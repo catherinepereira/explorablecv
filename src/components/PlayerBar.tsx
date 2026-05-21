@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, type RefObject } from "react";
 import type { VizPoint } from "@/lib/types";
 
@@ -24,7 +22,11 @@ export default function PlayerBar({ track, isPlaying, dims, onTogglePlay, audioR
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0.5);
+
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.volume = volume;
+  }, [audioRef, track, volume]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -66,19 +68,19 @@ export default function PlayerBar({ track, isPlaying, dims, onTogglePlay, audioR
     : `${fmt(track.x2)}, ${fmt(track.y2)}`;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-card-bg/90 backdrop-blur-md border-t border-card-border z-50">
-      <div className="h-1 bg-card-border cursor-pointer group" onClick={handleSeek}>
+    <div className="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-t border-gray-200 dark:border-zinc-800 z-50">
+      <div className="h-1 bg-gray-200 dark:bg-zinc-800 cursor-pointer group" onClick={handleSeek}>
         <div
-          className="h-full bg-accent transition-all duration-100 ease-linear group-hover:opacity-80"
+          className="h-full bg-blue-600 dark:bg-blue-500 transition-all duration-100 ease-linear group-hover:opacity-80"
           style={{ width: `${progress * 100}%` }}
         />
       </div>
 
-      <div className="max-w-screen-xl mx-auto px-6 py-2.5 flex items-center gap-4">
+      <div className="max-w-7xl mx-auto px-6 py-2.5 flex items-center gap-4">
 
         <button
           onClick={onTogglePlay}
-          className="rounded-full bg-accent w-9 h-9 flex items-center justify-center hover:opacity-80 transition-opacity shrink-0"
+          className="rounded-full bg-blue-600 dark:bg-blue-500 w-9 h-9 flex items-center justify-center hover:opacity-80 transition-opacity shrink-0"
         >
           {isPlaying ? (
             <span className="w-3.5 h-3.5 flex items-center justify-center gap-0.5">
@@ -97,7 +99,7 @@ export default function PlayerBar({ track, isPlaying, dims, onTogglePlay, audioR
             href={track.track_url ?? undefined}
             target="_blank"
             rel="noreferrer"
-            className="text-sm font-medium truncate text-foreground hover:text-accent transition-colors block"
+            className="text-sm font-medium truncate text-gray-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block"
           >
             {track.title ?? "Unknown Track"}
           </a>
@@ -105,7 +107,7 @@ export default function PlayerBar({ track, isPlaying, dims, onTogglePlay, audioR
             href={track.artist_url ?? undefined}
             target="_blank"
             rel="noreferrer"
-            className="text-xs text-muted truncate hover:text-accent transition-colors block"
+            className="text-xs text-gray-600 dark:text-zinc-400 truncate hover:text-blue-600 dark:hover:text-blue-400 transition-colors block"
           >
             {track.artist ?? "Unknown Artist"}
           </a>
@@ -113,13 +115,13 @@ export default function PlayerBar({ track, isPlaying, dims, onTogglePlay, audioR
 
         {isPlaying && (
           <div className="flex items-end gap-0.5 h-4 shrink-0">
-            <span className="w-0.5 bg-accent rounded-full animate-bounce" style={{ height: "60%", animationDelay: "0s" }} />
-            <span className="w-0.5 bg-accent rounded-full animate-bounce" style={{ height: "100%", animationDelay: "0.15s" }} />
-            <span className="w-0.5 bg-accent rounded-full animate-bounce" style={{ height: "40%", animationDelay: "0.3s" }} />
+            <span className="w-0.5 bg-blue-600 dark:bg-blue-400 rounded-full animate-bounce" style={{ height: "60%", animationDelay: "0s" }} />
+            <span className="w-0.5 bg-blue-600 dark:bg-blue-400 rounded-full animate-bounce" style={{ height: "100%", animationDelay: "0.15s" }} />
+            <span className="w-0.5 bg-blue-600 dark:bg-blue-400 rounded-full animate-bounce" style={{ height: "40%", animationDelay: "0.3s" }} />
           </div>
         )}
 
-        <span className="text-xs font-mono text-muted-light shrink-0 tabular-nums">
+        <span className="text-xs font-mono text-gray-400 dark:text-zinc-500 shrink-0 tabular-nums">
           {formatTime(currentTime)}{duration > 0 ? ` / ${formatTime(duration)}` : ""}
         </span>
 
@@ -130,12 +132,12 @@ export default function PlayerBar({ track, isPlaying, dims, onTogglePlay, audioR
           {track.genre}
         </span>
 
-        <span className="hidden sm:block shrink-0 text-xs font-mono text-muted-light tabular-nums">
+        <span className="hidden sm:block shrink-0 text-xs font-mono text-gray-400 dark:text-zinc-500 tabular-nums">
           ({coords})
         </span>
 
         <div className="shrink-0 flex items-center gap-2">
-          <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-muted shrink-0">
+          <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-gray-600 dark:text-zinc-400 shrink-0">
             {volume === 0 ? (
               <path d="M9.293 3.293a1 1 0 011.414 0L13 5.586l-1.414 1.414L10 5.414l-2 2V12.586l2-2 1.414 1.414-2.293 2.293a1 1 0 01-1.414 0l-4-4A1 1 0 013 9V5a1 1 0 01.293-.707l3-3zM17.707 15.293a1 1 0 010 1.414l-1 1a1 1 0 01-1.414-1.414L16 15.586l-.707-.707a1 1 0 011.414-1.414l1 1z" />
             ) : volume < 0.5 ? (
@@ -147,7 +149,7 @@ export default function PlayerBar({ track, isPlaying, dims, onTogglePlay, audioR
           <input
             type="range" min="0" max="1" step="0.02"
             value={volume} onChange={handleVolume}
-            className="w-20 accent-accent cursor-pointer"
+            className="w-20 accent-blue-600 dark:accent-blue-500 cursor-pointer"
             aria-label="Volume"
           />
         </div>

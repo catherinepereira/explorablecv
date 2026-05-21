@@ -1,5 +1,3 @@
-"use client";
-
 import { useRef, useState, useCallback, useMemo, useEffect } from "react";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -7,8 +5,7 @@ import { Html } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import * as THREE from "three";
 import type { VizData, VizPoint } from "@/lib/types";
-
-const BG = "#FFF9F3";
+import { useIsDark } from "@/lib/useTheme";
 
 function normalize(points: VizPoint[]) {
   const xs = points.map((p) => p.x);
@@ -26,12 +23,16 @@ function Scene({
   currentTrackId,
   onPlay,
   orbitRef,
+  bg,
+  accent,
 }: {
   vizData: VizData;
   selectedGenre: string | null;
   currentTrackId: number | null;
   onPlay: (point: VizPoint) => void;
   orbitRef: React.RefObject<OrbitControlsImpl | null>;
+  bg: string;
+  accent: string;
 }) {
   const { camera } = useThree();
   const pointsRef = useRef<THREE.Points>(null);
@@ -123,7 +124,7 @@ function Scene({
 
   return (
     <>
-      <color attach="background" args={[BG]} />
+      <color attach="background" args={[bg]} />
       <ambientLight intensity={0.5} />
       <points
         ref={pointsRef}
@@ -170,7 +171,7 @@ function Scene({
       {playingNorm && (
         <mesh ref={ringRef} position={[playingNorm.nx, playingNorm.ny, playingNorm.nz]}>
           <torusGeometry args={[0.22, 0.04, 8, 32]} />
-          <meshBasicMaterial color="#7A9E7E" transparent opacity={0.85} />
+          <meshBasicMaterial color={accent} transparent opacity={0.85} />
         </mesh>
       )}
 
@@ -178,11 +179,11 @@ function Scene({
 
       {hovered && hoveredNorm && (
         <Html position={[hoveredNorm.nx, hoveredNorm.ny, hoveredNorm.nz]} style={{ pointerEvents: "none" }}>
-          <div className="rounded-xl bg-card-bg border border-card-border shadow-lg px-3 py-2 text-xs whitespace-nowrap translate-x-3 -translate-y-12">
-            <p className="font-medium text-foreground">{hovered.title ?? "Unknown"}</p>
-            <p className="text-muted">{hovered.artist ?? "Unknown artist"}</p>
+          <div className="rounded-xl bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 shadow-lg px-3 py-2 text-xs whitespace-nowrap translate-x-3 -translate-y-12">
+            <p className="font-medium text-gray-900 dark:text-zinc-100">{hovered.title ?? "Unknown"}</p>
+            <p className="text-gray-600 dark:text-zinc-400">{hovered.artist ?? "Unknown artist"}</p>
             <p className="mt-0.5" style={{ color: hovered.color }}>{hovered.genre}</p>
-            {hovered.id === currentTrackId && <p className="text-accent mt-0.5 font-medium">playing</p>}
+            {hovered.id === currentTrackId && <p className="text-blue-600 dark:text-blue-400 mt-0.5 font-medium">playing</p>}
           </div>
         </Html>
       )}
@@ -199,20 +200,23 @@ interface Props {
 
 export default function Canvas3D({ vizData, selectedGenre, currentTrackId, onPlay }: Props) {
   const orbitRef = useRef<OrbitControlsImpl | null>(null);
+  const isDark = useIsDark();
+  const bg = isDark ? "#18181b" : "#fafafa";
+  const accent = isDark ? "#60a5fa" : "#2563eb";
 
   function zoomIn()  { if (orbitRef.current) { (orbitRef.current.object as THREE.PerspectiveCamera).position.multiplyScalar(0.8);  orbitRef.current.update(); } }
   function zoomOut() { if (orbitRef.current) { (orbitRef.current.object as THREE.PerspectiveCamera).position.multiplyScalar(1.25); orbitRef.current.update(); } }
   function reset()   { orbitRef.current?.reset(); }
 
   return (
-    <div className="relative rounded-2xl border border-card-border overflow-hidden" style={{ height: 580, background: BG }}>
+    <div className="relative rounded-2xl border border-gray-200 dark:border-zinc-800 overflow-hidden" style={{ height: 580, background: bg }}>
       <div className="absolute top-3 right-3 z-10 flex flex-col gap-1">
-        <button onClick={zoomIn}  className="w-7 h-7 rounded-lg bg-card-bg/90 border border-card-border text-muted hover:text-foreground text-sm flex items-center justify-center">+</button>
-        <button onClick={zoomOut} className="w-7 h-7 rounded-lg bg-card-bg/90 border border-card-border text-muted hover:text-foreground text-sm flex items-center justify-center">−</button>
-        <button onClick={reset}   className="w-7 h-7 rounded-lg bg-card-bg/90 border border-card-border text-muted hover:text-foreground text-xs flex items-center justify-center">⌂</button>
+        <button onClick={zoomIn}  className="w-7 h-7 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-zinc-100 text-sm flex items-center justify-center">+</button>
+        <button onClick={zoomOut} className="w-7 h-7 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-zinc-100 text-sm flex items-center justify-center">−</button>
+        <button onClick={reset}   className="w-7 h-7 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-zinc-100 text-xs flex items-center justify-center">⌂</button>
       </div>
       <Canvas camera={{ position: [0, 0, 16], fov: 50 }} gl={{ antialias: true }}>
-        <Scene vizData={vizData} selectedGenre={selectedGenre} currentTrackId={currentTrackId} onPlay={onPlay} orbitRef={orbitRef} />
+        <Scene vizData={vizData} selectedGenre={selectedGenre} currentTrackId={currentTrackId} onPlay={onPlay} orbitRef={orbitRef} bg={bg} accent={accent} />
       </Canvas>
     </div>
   );

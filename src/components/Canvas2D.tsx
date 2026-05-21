@@ -1,7 +1,6 @@
-"use client";
-
 import { useEffect, useRef, useState, useCallback } from "react";
 import type { VizData, VizPoint } from "@/lib/types";
+import { useIsDark } from "@/lib/useTheme";
 
 const W = 900;
 const H = 650;
@@ -42,6 +41,10 @@ interface Props {
 }
 
 export default function Canvas2D({ vizData, selectedGenre, currentTrackId, onPlay }: Props) {
+  const isDark = useIsDark();
+  const accent = isDark ? "#60a5fa" : "#2563eb";
+  const dimColor = isDark ? "#52525b20" : "#88888810";
+
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const normMapRef = useRef(new Map<number, { nx: number; ny: number }>());
   const cameraRef = useRef<Camera>({ x: W / 2, y: H / 2, scale: 1 });
@@ -100,18 +103,18 @@ export default function Canvas2D({ vizData, selectedGenre, currentTrackId, onPla
 
       ctx.beginPath();
       ctx.arc(cx, cy, isGenreMatch ? 3 : 2, 0, Math.PI * 2);
-      ctx.fillStyle = isGenreMatch ? p.color + "99" : "#88888810";
+      ctx.fillStyle = isGenreMatch ? p.color + "99" : dimColor;
       ctx.fill();
 
       if (isPlaying) {
         ctx.beginPath();
         ctx.arc(cx, cy, 11, 0, Math.PI * 2);
-        ctx.strokeStyle = "#7A9E7E";
+        ctx.strokeStyle = accent;
         ctx.lineWidth = 2;
         ctx.stroke();
       }
     }
-  }, [vizData, selectedGenre, currentTrackId, tick]);
+  }, [vizData, selectedGenre, currentTrackId, tick, accent, dimColor]);
 
   const hitTest = useCallback((clientX: number, clientY: number): VizPoint | null => {
     const canvas = canvasRef.current;
@@ -246,11 +249,11 @@ export default function Canvas2D({ vizData, selectedGenre, currentTrackId, onPla
   function reset()   { cameraRef.current = { x: W / 2, y: H / 2, scale: 1 }; redraw(); }
 
   return (
-    <div className="relative rounded-2xl border border-card-border bg-card-bg overflow-hidden">
+    <div className="relative rounded-2xl border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-800/40 overflow-hidden">
       <div className="absolute top-3 right-3 flex flex-col gap-1 z-10">
-        <button onClick={zoomIn}  className="w-7 h-7 rounded-lg bg-card-bg/90 border border-card-border text-muted hover:text-foreground text-sm flex items-center justify-center">+</button>
-        <button onClick={zoomOut} className="w-7 h-7 rounded-lg bg-card-bg/90 border border-card-border text-muted hover:text-foreground text-sm flex items-center justify-center">−</button>
-        <button onClick={reset}   className="w-7 h-7 rounded-lg bg-card-bg/90 border border-card-border text-muted hover:text-foreground text-xs flex items-center justify-center">⌂</button>
+        <button onClick={zoomIn}  className="w-7 h-7 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-zinc-100 text-sm flex items-center justify-center">+</button>
+        <button onClick={zoomOut} className="w-7 h-7 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-zinc-100 text-sm flex items-center justify-center">−</button>
+        <button onClick={reset}   className="w-7 h-7 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-zinc-100 text-xs flex items-center justify-center">⌂</button>
       </div>
 
       <canvas
@@ -274,13 +277,13 @@ export default function Canvas2D({ vizData, selectedGenre, currentTrackId, onPla
 
       {tooltip && (
         <div
-          className="fixed z-50 pointer-events-none rounded-xl bg-card-bg border border-card-border shadow-lg px-3 py-2 text-xs max-w-52"
+          className="fixed z-50 pointer-events-none rounded-xl bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 shadow-lg px-3 py-2 text-xs max-w-52"
           style={{ left: tooltip.x + 14, top: tooltip.y - 48 }}
         >
-          <p className="font-medium text-foreground truncate">{tooltip.point.title ?? "Unknown"}</p>
-          <p className="text-muted truncate">{tooltip.point.artist ?? "Unknown artist"}</p>
+          <p className="font-medium text-gray-900 dark:text-zinc-100 truncate">{tooltip.point.title ?? "Unknown"}</p>
+          <p className="text-gray-600 dark:text-zinc-400 truncate">{tooltip.point.artist ?? "Unknown artist"}</p>
           <p className="mt-0.5" style={{ color: tooltip.point.color }}>{tooltip.point.genre}</p>
-          {tooltip.point.id === currentTrackId && <p className="text-accent mt-0.5 font-medium">playing</p>}
+          {tooltip.point.id === currentTrackId && <p className="text-blue-600 dark:text-blue-400 mt-0.5 font-medium">playing</p>}
         </div>
       )}
     </div>
