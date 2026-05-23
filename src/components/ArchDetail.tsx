@@ -4,9 +4,7 @@ import { ArchDiagram } from './ArchDiagram'
 import { FeatureMaps } from './FeatureMaps'
 import { NarrativePanel } from './NarrativePanel'
 
-export function ArchDetail({ arch }: { arch: Architecture }) {
-  const state = useAppStore((s) => s.archStates[arch.id])
-
+export function ArchOverview({ arch }: { arch: Architecture }) {
   return (
     <div className="flex flex-col gap-4">
       <div>
@@ -28,12 +26,17 @@ export function ArchDetail({ arch }: { arch: Architecture }) {
       </div>
       <NarrativePanel arch={arch} />
       <ArchDiagram arch={arch} />
-      {state?.result && (
-        <>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-zinc-100 mt-2">Feature maps</h3>
-          <FeatureMaps result={state.result} />
-        </>
-      )}
+    </div>
+  )
+}
+
+export function ArchFeatureMaps({ arch }: { arch: Architecture }) {
+  const state = useAppStore((s) => s.archStates[arch.id])
+  if (!state?.result) return null
+  return (
+    <div className="flex flex-col gap-4">
+      <h3 className="text-lg font-medium text-gray-900 dark:text-zinc-100">Feature maps</h3>
+      <FeatureMaps result={state.result} />
     </div>
   )
 }

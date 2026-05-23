@@ -1,5 +1,5 @@
 import { ARCHITECTURES } from './architectures/data'
-import { ArchDetail } from './components/ArchDetail'
+import { ArchFeatureMaps, ArchOverview } from './components/ArchDetail'
 import { ImageUploader } from './components/ImageUploader'
 import { PredictionStrip } from './components/PredictionStrip'
 import { SiteHeader } from './components/SiteHeader'
@@ -47,6 +47,11 @@ export function App() {
         </SiteHeader>
 
         <main className="flex flex-col gap-6">
+        <Timeline />
+        {selected && <ArchOverview arch={selected} />}
+
+        {selected && <hr className="border-t border-gray-200 dark:border-zinc-800" />}
+
         <ImageUploader />
 
         {imageUrl && (
@@ -62,10 +67,8 @@ export function App() {
           </div>
         )}
 
-        <Timeline />
-
         {imageUrl && <PredictionStrip />}
-        {selected && <ArchDetail arch={selected} />}
+        {selected && <ArchFeatureMaps arch={selected} />}
         </main>
 
         <footer className="mt-12 text-xs text-gray-500 dark:text-zinc-500 border-t border-gray-200 dark:border-zinc-800 pt-6">

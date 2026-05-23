@@ -24,12 +24,12 @@ export const useAppStore = create<AppState>((set) => ({
   imageUrl: null,
   imageTensor: null,
   archStates: {},
-  selectedArchId: 'lenet',
+  selectedArchId: null,
   setImage: (imageUrl, imageTensor) =>
     set({ imageUrl, imageTensor, archStates: {} }),
   setArchState: (id, state) =>
     set((s) => ({ archStates: { ...s.archStates, [id]: state } })),
   selectArch: (selectedArchId) => set({ selectedArchId }),
   reset: () =>
-    set({ imageUrl: null, imageTensor: null, archStates: {}, selectedArchId: 'lenet' }),
+    set({ imageUrl: null, imageTensor: null, archStates: {}, selectedArchId: null }),
 }))
