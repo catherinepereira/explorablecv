@@ -56,8 +56,7 @@ export function ImageUploader() {
         ))}
       </div>
       <p className="text-gray-500 dark:text-zinc-500 text-xs">
-        Images are resized to 32×32 and normalized with CIFAR-10 stats. All inference runs locally
-        in your browser.
+        Images are resized to 32×32 and normalized with CIFAR-10 stats.
       </p>
     </div>
   )

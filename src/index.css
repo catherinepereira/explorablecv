@@ -19,7 +19,6 @@ html, body, #root {
 
 .font-mono, code, pre {
   font-family: "Geist Mono", ui-monospace, Consolas, monospace;
-  font-feature-settings: "liga" 1, "calt" 1;
 }
 
 .font-display {

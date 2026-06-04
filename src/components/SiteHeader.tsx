@@ -6,7 +6,6 @@ type Props = {
   title: string;
   repo: string;
   modelRepo?: string;
-  /** Optional blurb paragraph rendered below the header row. Wrap JSX (links, em, etc.) freely. */
   children?: ReactNode;
 };
 

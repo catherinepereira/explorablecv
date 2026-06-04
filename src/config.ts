@@ -1,4 +1,4 @@
-export const DEV_FRONTEND_PORT = 5418
+export const DEV_FRONTEND_PORT = 5504
 
 export const CIFAR10_LABELS = [
   'airplane', 'automobile', 'bird', 'cat', 'deer',

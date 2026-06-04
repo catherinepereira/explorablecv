@@ -1,13 +1,8 @@
 type Props = {
-  /** Called with the picked File. */
   onFile: (file: File) => void;
-  /** Accept attribute for the input, e.g. "image/*". */
   accept?: string;
-  /** Label text (default: "Upload"). */
   label?: string;
-  /** Replacement label while a previous upload is being processed. */
   busy?: boolean;
-  /** Replacement text when busy (default: "Loading…"). */
   busyLabel?: string;
 };
 
@@ -19,7 +14,7 @@ export function UploadButton({
   busyLabel = "Loading…",
 }: Props) {
   return (
-    <label className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md border bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 hover:bg-blue-100 hover:border-blue-300 cursor-pointer transition-colors has-disabled:opacity-50 has-disabled:cursor-not-allowed">
+    <label className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md border bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-950/50 hover:border-blue-300 dark:hover:border-blue-800 cursor-pointer transition-colors has-disabled:opacity-50 has-disabled:cursor-not-allowed">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"

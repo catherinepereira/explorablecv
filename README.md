@@ -1,7 +1,7 @@
 # CNN Architecture Comparison
 
 Walk through the major CNN architectures from LeNet (1998) to DenseNet (2016) side by side on the same image.
-Six small networks trained on CIFAR-10 run client-side via ONNX Runtime Web, so you can compare predictions, feature maps, and architecture diagrams!
+Six small networks trained on CIFAR-10 run client-side via ONNX Runtime Web, so you can compare predictions, feature maps, and architecture diagrams.
 
 ## Architectures
 
@@ -16,10 +16,13 @@ Six small networks trained on CIFAR-10 run client-side via ONNX Runtime Web, so 
 
 Param counts above are for the small CIFAR variants shipped with this demo. The original ImageNet / paper versions are larger (AlexNet ~60M, Inception/GoogLeNet ~6.8M, etc.).
 
-
 ## How it works
 
-The user uploads an image, which the browser resizes to 32×32 and normalizes with CIFAR-10 statistics. The same Float32Array is fed to all six ONNX sessions in parallel. 
+The user uploads an image, which the browser resizes to 32×32 and normalizes with CIFAR-10 statistics. The same Float32Array is fed to all six ONNX sessions in parallel.
 Each ONNX export includes the final logits plus a handful of intermediate feature map tensors (one per stage), which are rendered as small grayscale tiles per channel.
 
 ONNX Runtime Web uses WASM by default. Sessions are cached at module level so re-runs are fast after the first load.
+
+## Credits
+
+The favicon is the "mantelpiece clock" emoji from [Twemoji](https://github.com/twitter/twemoji) by Twitter, Inc. and other contributors, licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
