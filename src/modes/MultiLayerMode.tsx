@@ -4,7 +4,6 @@ import { generatedPattern } from "../lib/image";
 import { MatrixCanvas } from "../components/MatrixCanvas";
 import { ImagePicker } from "../components/ImagePicker";
 import { ColorLegend } from "../components/ColorLegend";
-import { InfoHint } from "../components/InfoHint";
 
 const IMG_SIZE = 64;
 
@@ -31,7 +30,8 @@ export function MultiLayerMode() {
     layers.forEach((layer, idx) => {
       const next: Matrix[] = [];
       for (const k of layer.kernels) {
-        // Average across previous feature maps instead of learning a per-channel mix, since this is a visualizer with hand-picked kernels, not a trained network.
+        // Hand-picked kernels, so average across previous feature maps
+        // rather than learn a per-channel mix the way a trained network would.
         const acc = prev.map((m) => convolve(m, KERNELS[k], { stride: 1, padding: "same" }));
         let combined = acc[0];
         for (let i = 1; i < acc.length; i++) {
@@ -70,6 +70,27 @@ export function MultiLayerMode() {
 
   return (
     <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-gray-50/40 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800 rounded-lg p-4">
+          <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-zinc-500 mb-2">ReLU</div>
+          <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed">
+            The Rectified Linear Unit clamps negative values to zero and leaves
+            positives unchanged: <span className="font-mono text-[0.85em] text-blue-600 dark:text-blue-400">f(x) = max(0, x)</span>.
+            It adds the nonlinearity that lets a stack of layers model more than
+            a single linear filter.
+          </p>
+        </div>
+        <div className="bg-gray-50/40 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800 rounded-lg p-4">
+          <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-zinc-500 mb-2">Max pooling</div>
+          <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed">
+            A <span className="font-mono text-[0.85em] text-blue-600 dark:text-blue-400">2×2</span> window
+            slides across the feature map and keeps only the largest value in
+            each window. It halves the spatial size and adds slight translation
+            invariance, so small shifts in the input barely change the output.
+          </p>
+        </div>
+      </div>
+
       <div className="flex flex-wrap items-center gap-3">
         <span className="text-sm text-gray-600 dark:text-zinc-400">Image:</span>
         <ImagePicker
@@ -85,8 +106,8 @@ export function MultiLayerMode() {
       <div className="space-y-4">
         {layers.map((layer, li) => (
           <div key={li} className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg p-3 flex flex-wrap items-center gap-3">
-            <span className="text-xs font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wide">Layer {li + 1}</span>
-            <div className="flex flex-wrap gap-2">
+            <span className="text-xs font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wide shrink-0">Layer {li + 1}</span>
+            <div className="flex flex-wrap items-center gap-2">
               {layer.kernels.map((k, ki) => (
                 <select
                   key={ki}
@@ -101,29 +122,30 @@ export function MultiLayerMode() {
                   ))}
                 </select>
               ))}
+              <button
+                onClick={() => addKernel(li)}
+                aria-label="Add filter"
+                className="w-5 h-5 flex items-center justify-center text-xs rounded border bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-950/50 hover:border-blue-300 dark:hover:border-blue-800 transition-colors cursor-pointer"
+              >
+                +
+              </button>
+              <button
+                onClick={() => removeKernel(li)}
+                aria-label="Remove filter"
+                className="w-5 h-5 flex items-center justify-center text-xs rounded border bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-950/50 hover:border-blue-300 dark:hover:border-blue-800 transition-colors cursor-pointer"
+              >
+                −
+              </button>
             </div>
-            <button
-              onClick={() => addKernel(li)}
-              className="px-2 py-1 text-xs rounded-md border border-gray-300 dark:border-zinc-700 text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800/40 transition-colors cursor-pointer"
-            >
-              + filter
-            </button>
-            <button
-              onClick={() => removeKernel(li)}
-              className="px-2 py-1 text-xs rounded-md border border-gray-300 dark:border-zinc-700 text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800/40 transition-colors cursor-pointer"
-            >
-              − filter
-            </button>
-            <label className="flex items-center gap-1 text-sm">
-              <input type="checkbox" checked={layer.relu} onChange={() => toggle(li, "relu")} />
+            <div className="w-px self-stretch bg-gray-200 dark:bg-zinc-800" />
+            <label className="flex items-center gap-1.5 text-sm">
+              <input type="checkbox" checked={layer.relu} onChange={() => toggle(li, "relu")} className="accent-blue-600 dark:accent-blue-400" />
               ReLU
             </label>
-            <InfoHint text="ReLU (Rectified Linear Unit) clamps negative values to zero and leaves positives unchanged: f(x) = max(0, x). It introduces nonlinearity so the network can model more than just linear filters." />
-            <label className="flex items-center gap-1 text-sm">
-              <input type="checkbox" checked={layer.pool} onChange={() => toggle(li, "pool")} />
+            <label className="flex items-center gap-1.5 text-sm">
+              <input type="checkbox" checked={layer.pool} onChange={() => toggle(li, "pool")} className="accent-blue-600 dark:accent-blue-400" />
               MaxPool 2×2
             </label>
-            <InfoHint text="Max pooling slides a 2×2 window across the feature map and keeps only the largest value in each window. It halves the spatial size and makes the response slightly translation-invariant, so small shifts in the input don't change the output." />
           </div>
         ))}
       </div>

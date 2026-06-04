@@ -34,7 +34,7 @@ function lerp(a: number, b: number, t: number) {
   return Math.round(a + (b - a) * t);
 }
 
-// Blue (negative) → white (zero) → red (positive). t in [-1, 1].
+// Blue (negative) → white (zero) → red (positive), t in [-1, 1]
 function diverging(t: number): [number, number, number] {
   const blue: [number, number, number] = [37, 99, 235]; // tailwind blue-600
   const white: [number, number, number] = [255, 255, 255];

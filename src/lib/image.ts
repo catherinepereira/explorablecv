@@ -35,7 +35,7 @@ export function generatedPattern(kind: "checker" | "circle" | "stripes", size: n
   for (let y = 0; y < size; y++) {
     const row: number[] = [];
     for (let x = 0; x < size; x++) {
-      let v = 0;
+      let v: number;
       if (kind === "checker") {
         const c = 8;
         v = ((Math.floor(x / c) + Math.floor(y / c)) % 2 === 0) ? 1 : 0;

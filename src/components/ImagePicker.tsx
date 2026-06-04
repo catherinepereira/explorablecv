@@ -5,7 +5,7 @@ import { UploadButton } from "./UploadButton";
 
 interface Props {
   size: number;
-  /** Called with the new matrix, an id (preset id or "upload"), and a human label. */
+  /** Called with the new matrix, an id (preset id or "upload"), and a human label */
   onChange: (m: Matrix, id: string, label: string) => void;
   value: string;
 }

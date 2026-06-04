@@ -85,6 +85,26 @@ export function SingleConvMode() {
 
   return (
     <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-gray-50/40 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800 rounded-lg p-4">
+          <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-zinc-500 mb-2">Input patch</div>
+          <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed">
+            The <span className="font-mono text-[0.85em] text-blue-600 dark:text-blue-400">3×3</span> window
+            of input pixels the kernel currently sits on. As the kernel slides,
+            this patch is the slice of the image it looks at to produce one
+            output value.
+          </p>
+        </div>
+        <div className="bg-gray-50/40 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800 rounded-lg p-4">
+          <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-zinc-500 mb-2">Kernel</div>
+          <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed">
+            A small grid of weights. Each output value is the sum of the input
+            patch multiplied elementwise by the kernel, so the kernel decides
+            what pattern the convolution responds to (edges, blur, sharpen).
+          </p>
+        </div>
+      </div>
+
       <div className="flex flex-wrap items-center gap-3">
         <span className="text-sm text-gray-600 dark:text-zinc-400">Image:</span>
         <ImagePicker
@@ -186,15 +206,21 @@ export function SingleConvMode() {
             <p className="text-[10px] font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wide mb-1">Input patch</p>
             <KernelEditor kernel={patch} onChange={() => {}} editable={false} />
           </div>
-          <div className="text-2xl text-gray-400 dark:text-zinc-500 self-center">×</div>
+          <div className="self-stretch flex flex-col">
+            <p className="text-[10px] mb-1" aria-hidden="true">&nbsp;</p>
+            <div className="flex-1 flex items-center text-2xl text-gray-400 dark:text-zinc-500">×</div>
+          </div>
           <div>
             <p className="text-[10px] font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wide mb-1">Kernel</p>
             <KernelEditor kernel={kernel} onChange={() => {}} editable={false} />
           </div>
-          <div className="text-2xl text-gray-400 dark:text-zinc-500 self-center">=</div>
-          <div>
+          <div className="self-stretch flex flex-col">
+            <p className="text-[10px] mb-1" aria-hidden="true">&nbsp;</p>
+            <div className="flex-1 flex items-center text-2xl text-gray-400 dark:text-zinc-500">=</div>
+          </div>
+          <div className="self-stretch flex flex-col">
             <p className="text-[10px] font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wide mb-1">Sum</p>
-            <div className="w-16 h-12 flex items-center justify-center border border-gray-300 dark:border-zinc-700 rounded font-mono text-sm bg-gray-50 dark:bg-zinc-800/40">
+            <div className="w-16 h-12 my-auto flex items-center justify-center border border-gray-300 dark:border-zinc-700 rounded font-mono text-sm bg-gray-50 dark:bg-zinc-800/40">
               {sum.toFixed(2)}
             </div>
           </div>

@@ -5,7 +5,6 @@ import { MatrixCanvas } from "../components/MatrixCanvas";
 import { KernelEditor } from "../components/KernelEditor";
 import { ImagePicker } from "../components/ImagePicker";
 import { ColorLegend } from "../components/ColorLegend";
-import { InfoHint } from "../components/InfoHint";
 
 const IMG_SIZE = 64;
 
@@ -23,6 +22,28 @@ export function PlaygroundMode() {
 
   return (
     <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-gray-50/40 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800 rounded-lg p-4">
+          <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-zinc-500 mb-2">Stride</div>
+          <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed">
+            How many pixels the kernel moves between positions. Stride{" "}
+            <span className="font-mono text-[0.85em] text-blue-600 dark:text-blue-400">1</span> visits
+            every pixel; stride <span className="font-mono text-[0.85em] text-blue-600 dark:text-blue-400">2</span> skips
+            every other one, shrinking the output by half.
+          </p>
+        </div>
+        <div className="bg-gray-50/40 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800 rounded-lg p-4">
+          <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-zinc-500 mb-2">Padding</div>
+          <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed">
+            A border of zeros around the input so the kernel can sit on edge
+            pixels. <span className="font-mono text-[0.85em] text-blue-600 dark:text-blue-400">same</span> adds
+            enough to keep the output the same size as the input;{" "}
+            <span className="font-mono text-[0.85em] text-blue-600 dark:text-blue-400">valid</span> adds
+            none, so the output shrinks by (kernel size − 1).
+          </p>
+        </div>
+      </div>
+
       <div className="flex flex-wrap items-center gap-3">
         <span className="text-sm text-gray-600 dark:text-zinc-400">Image:</span>
         <ImagePicker
@@ -69,7 +90,6 @@ export function PlaygroundMode() {
                 <option value={2}>2</option>
                 <option value={3}>3</option>
               </select>
-              <InfoHint text="Stride is how many pixels the kernel moves between positions. Stride 1 visits every pixel; stride 2 skips every other one, shrinking the output by half." />
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-zinc-300">
               <span>Padding:</span>
@@ -81,7 +101,6 @@ export function PlaygroundMode() {
                 <option value="same">same</option>
                 <option value="valid">valid</option>
               </select>
-              <InfoHint text="Padding adds a border of zeros around the input so the kernel can sit on edge pixels. 'same' adds enough to keep output and input the same size; 'valid' adds none, so the output shrinks by (kernel size − 1)." />
             </div>
           </div>
         </div>
