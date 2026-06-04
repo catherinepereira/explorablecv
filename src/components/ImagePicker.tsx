@@ -10,7 +10,12 @@ interface Props {
   value: string;
 }
 
-const PRESETS: { id: string; label: string; kind: "pattern" | "url"; arg: string }[] = [
+const PRESETS: {
+  id: string;
+  label: string;
+  kind: "pattern" | "url";
+  arg: string;
+}[] = [
   { id: "checker", label: "Checkerboard", kind: "pattern", arg: "checker" },
   { id: "circle", label: "Circle", kind: "pattern", arg: "circle" },
   { id: "stripes", label: "Stripes", kind: "pattern", arg: "stripes" },
@@ -21,7 +26,11 @@ export function ImagePicker({ size, onChange, value }: Props) {
     const p = PRESETS.find((p) => p.id === value);
     if (!p) return;
     if (p.kind === "pattern") {
-      onChange(generatedPattern(p.arg as "checker" | "circle" | "stripes", size), p.id, p.label);
+      onChange(
+        generatedPattern(p.arg as "checker" | "circle" | "stripes", size),
+        p.id,
+        p.label,
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, size]);
@@ -41,11 +50,20 @@ export function ImagePicker({ size, onChange, value }: Props) {
           key={p.id}
           onClick={() => {
             if (p.kind === "pattern") {
-              onChange(generatedPattern(p.arg as "checker" | "circle" | "stripes", size), p.id, p.label);
+              onChange(
+                generatedPattern(
+                  p.arg as "checker" | "circle" | "stripes",
+                  size,
+                ),
+                p.id,
+                p.label,
+              );
             }
           }}
-          className={`px-3 py-1.5 text-sm rounded-md border transition-colors cursor-pointer ${
-            value === p.id ? "bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500" : "bg-white dark:bg-zinc-900 border-gray-300 dark:border-zinc-700 text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800/40"
+          className={`cursor-pointer rounded-md border px-3 py-1.5 text-sm transition-colors ${
+            value === p.id
+              ? "border-blue-600 bg-blue-600 text-white dark:border-blue-500 dark:bg-blue-500"
+              : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800/40"
           }`}
         >
           {p.label}

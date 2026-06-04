@@ -14,12 +14,12 @@ export function UploadButton({
   busyLabel = "Loading…",
 }: Props) {
   return (
-    <label className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md border bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-950/50 hover:border-blue-300 dark:hover:border-blue-800 cursor-pointer transition-colors has-disabled:opacity-50 has-disabled:cursor-not-allowed">
+    <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-md border border-blue-200 bg-blue-50 px-3 py-1.5 text-sm text-blue-700 transition-colors hover:border-blue-300 hover:bg-blue-100 has-disabled:cursor-not-allowed has-disabled:opacity-50 dark:border-blue-900 dark:bg-blue-950/30 dark:text-blue-300 dark:hover:border-blue-800 dark:hover:bg-blue-950/50">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-4 h-4"
+        className="h-4 w-4"
         aria-hidden="true"
       >
         <path

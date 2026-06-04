@@ -61,11 +61,20 @@ export function padInput(input: Matrix, pad: number): Matrix {
   return out;
 }
 
-export function outputSize(inSize: number, kSize: number, stride: number, pad: number): number {
+export function outputSize(
+  inSize: number,
+  kSize: number,
+  stride: number,
+  pad: number,
+): number {
   return Math.floor((inSize + 2 * pad - kSize) / stride) + 1;
 }
 
-export function convolve(input: Matrix, kernel: Matrix, opts: ConvOptions): Matrix {
+export function convolve(
+  input: Matrix,
+  kernel: Matrix,
+  opts: ConvOptions,
+): Matrix {
   const kh = kernel.length;
   const kw = kernel[0].length;
   const pad = opts.padding === "same" ? Math.floor(kh / 2) : 0;
@@ -81,7 +90,9 @@ export function convolve(input: Matrix, kernel: Matrix, opts: ConvOptions): Matr
       let sum = 0;
       for (let ky = 0; ky < kh; ky++) {
         for (let kx = 0; kx < kw; kx++) {
-          sum += padded[oy * opts.stride + ky][ox * opts.stride + kx] * kernel[ky][kx];
+          sum +=
+            padded[oy * opts.stride + ky][ox * opts.stride + kx] *
+            kernel[ky][kx];
         }
       }
       row.push(sum);
@@ -113,13 +124,18 @@ export function maxPool2(m: Matrix): Matrix {
   return out;
 }
 
-export function normalize(m: Matrix): { data: Matrix; min: number; max: number } {
+export function normalize(m: Matrix): {
+  data: Matrix;
+  min: number;
+  max: number;
+} {
   let min = Infinity;
   let max = -Infinity;
-  for (const row of m) for (const v of row) {
-    if (v < min) min = v;
-    if (v > max) max = v;
-  }
+  for (const row of m)
+    for (const v of row) {
+      if (v < min) min = v;
+      if (v > max) max = v;
+    }
   const range = max - min || 1;
   const data = m.map((row) => row.map((v) => (v - min) / range));
   return { data, min, max };

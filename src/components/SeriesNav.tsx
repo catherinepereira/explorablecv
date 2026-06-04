@@ -1,4 +1,5 @@
-const SERIES_URL = "https://github.com/stars/catherinepereira/lists/explorables";
+const SERIES_URL =
+  "https://github.com/stars/catherinepereira/lists/explorables";
 
 type SeriesItem = {
   slug: string;
@@ -7,11 +8,31 @@ type SeriesItem = {
 };
 
 const SERIES: SeriesItem[] = [
-  { slug: "bpe-playground", title: "BPE Playground", href: "https://bpe-playground.vercel.app/" },
-  { slug: "cnn-playground", title: "CNN Playground", href: "https://cnn-playground.vercel.app/" },
-  { slug: "cnn-visualizer", title: "CNN Visualizer", href: "https://cnn-visualizer-cat.vercel.app/" },
-  { slug: "cnn-architecture-comparison", title: "CNN Architectures", href: "https://cnn-architecture-comparison.vercel.app/" },
-  { slug: "cv-interpretability", title: "CV Interpretability", href: "https://cv-interpretability.vercel.app/" },
+  {
+    slug: "bpe-playground",
+    title: "BPE Playground",
+    href: "https://bpe-playground.vercel.app/",
+  },
+  {
+    slug: "cnn-playground",
+    title: "CNN Playground",
+    href: "https://cnn-playground.vercel.app/",
+  },
+  {
+    slug: "cnn-visualizer",
+    title: "CNN Visualizer",
+    href: "https://cnn-visualizer-cat.vercel.app/",
+  },
+  {
+    slug: "cnn-architecture-comparison",
+    title: "CNN Architectures",
+    href: "https://cnn-architecture-comparison.vercel.app/",
+  },
+  {
+    slug: "cv-interpretability",
+    title: "CV Interpretability",
+    href: "https://cv-interpretability.vercel.app/",
+  },
 ];
 
 type Props = {
@@ -20,12 +41,12 @@ type Props = {
 
 export function SeriesNav({ currentSlug }: Props) {
   return (
-    <nav className="mb-5 flex items-baseline gap-2 text-xs text-gray-500 dark:text-zinc-500 flex-wrap">
+    <nav className="mb-5 flex flex-wrap items-baseline gap-2 text-xs text-gray-500 dark:text-zinc-500">
       <a
         href={SERIES_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="uppercase tracking-wider text-gray-500 dark:text-zinc-500 hover:text-blue-600 dark:hover:text-blue-400"
+        className="tracking-wider text-gray-500 uppercase hover:text-blue-600 dark:text-zinc-500 dark:hover:text-blue-400"
       >
         Explorables Series
       </a>
@@ -33,13 +54,13 @@ export function SeriesNav({ currentSlug }: Props) {
       {SERIES.map((item, i) => (
         <span key={item.slug} className="flex items-baseline gap-2">
           {item.slug === currentSlug ? (
-            <span className="text-gray-900 dark:text-zinc-100 font-medium">
+            <span className="font-medium text-gray-900 dark:text-zinc-100">
               {item.title}
             </span>
           ) : (
             <a
               href={item.href}
-              className="text-gray-500 dark:text-zinc-400 underline-offset-2 hover:text-blue-600 dark:hover:text-blue-400 hover:underline"
+              className="text-gray-500 underline-offset-2 hover:text-blue-600 hover:underline dark:text-zinc-400 dark:hover:text-blue-400"
             >
               {item.title}
             </a>

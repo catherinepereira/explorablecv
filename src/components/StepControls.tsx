@@ -13,8 +13,10 @@ type Props = {
   disablePlay?: boolean;
 };
 
-const BTN = "px-2 py-1 rounded text-sm disabled:opacity-30 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer disabled:cursor-default";
-const PLAY_BTN = "px-3 py-1 rounded text-sm bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 disabled:opacity-30 transition-colors cursor-pointer disabled:cursor-default";
+const BTN =
+  "px-2 py-1 rounded text-sm disabled:opacity-30 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer disabled:cursor-default";
+const PLAY_BTN =
+  "px-3 py-1 rounded text-sm bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 disabled:opacity-30 transition-colors cursor-pointer disabled:cursor-default";
 
 export function StepControls({
   currentStep,
@@ -31,7 +33,7 @@ export function StepControls({
   const playDisabled = disablePlay ?? maxStep === 0;
 
   return (
-    <div className="flex flex-wrap items-center gap-3 w-full">
+    <div className="flex w-full flex-wrap items-center gap-3">
       <div className="flex items-center gap-1">
         <button
           onClick={() => onSetStep(0)}
@@ -74,7 +76,7 @@ export function StepControls({
           ⏭
         </button>
       </div>
-      <span className="text-xs text-gray-500 dark:text-zinc-500 min-w-16 font-mono">
+      <span className="min-w-16 font-mono text-xs text-gray-500 dark:text-zinc-500">
         Step {Math.min(currentStep, maxStep)}/{maxStep}
       </span>
       <input

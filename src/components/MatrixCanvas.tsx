@@ -4,7 +4,10 @@ import { normalize } from "../lib/conv";
 
 function subscribeToTheme(callback: () => void): () => void {
   const observer = new MutationObserver(callback);
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
   return () => observer.disconnect();
 }
 
@@ -13,11 +16,7 @@ function isDarkSnapshot(): boolean {
 }
 
 function useIsDark(): boolean {
-  return useSyncExternalStore(
-    subscribeToTheme,
-    isDarkSnapshot,
-    () => false,
-  );
+  return useSyncExternalStore(subscribeToTheme, isDarkSnapshot, () => false);
 }
 
 interface Props {
@@ -40,10 +39,18 @@ function diverging(t: number): [number, number, number] {
   const white: [number, number, number] = [255, 255, 255];
   const red: [number, number, number] = [220, 38, 38]; // tailwind red-600
   if (t >= 0) {
-    return [lerp(white[0], red[0], t), lerp(white[1], red[1], t), lerp(white[2], red[2], t)];
+    return [
+      lerp(white[0], red[0], t),
+      lerp(white[1], red[1], t),
+      lerp(white[2], red[2], t),
+    ];
   }
   const k = -t;
-  return [lerp(white[0], blue[0], k), lerp(white[1], blue[1], k), lerp(white[2], blue[2], k)];
+  return [
+    lerp(white[0], blue[0], k),
+    lerp(white[1], blue[1], k),
+    lerp(white[2], blue[2], k),
+  ];
 }
 
 export function MatrixCanvas({
@@ -69,10 +76,11 @@ export function MatrixCanvas({
     const ctx = canvas.getContext("2d")!;
     if (colormap === "diverging") {
       let absMax = 0;
-      for (const row of matrix) for (const v of row) {
-        const a = Math.abs(v);
-        if (a > absMax) absMax = a;
-      }
+      for (const row of matrix)
+        for (const v of row) {
+          const a = Math.abs(v);
+          if (a > absMax) absMax = a;
+        }
       const scale = absMax || 1;
       for (let y = 0; y < h; y++) {
         for (let x = 0; x < w; x++) {
@@ -123,8 +131,12 @@ export function MatrixCanvas({
   function handleMove(e: React.MouseEvent<HTMLCanvasElement>) {
     if (!onCellHover) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = Math.floor(((e.clientX - rect.left) / rect.width) * (matrix[0]?.length ?? 0));
-    const y = Math.floor(((e.clientY - rect.top) / rect.height) * matrix.length);
+    const x = Math.floor(
+      ((e.clientX - rect.left) / rect.width) * (matrix[0]?.length ?? 0),
+    );
+    const y = Math.floor(
+      ((e.clientY - rect.top) / rect.height) * matrix.length,
+    );
     onCellHover(x, y);
   }
 
@@ -134,7 +146,7 @@ export function MatrixCanvas({
       onMouseMove={handleMove}
       onMouseLeave={onCellLeave}
       style={{ imageRendering: "pixelated" }}
-      className="border border-gray-300 dark:border-zinc-700 rounded"
+      className="rounded border border-gray-300 dark:border-zinc-700"
     />
   );
 }

@@ -30,7 +30,10 @@ export function loadImage(src: string): Promise<HTMLImageElement> {
   });
 }
 
-export function generatedPattern(kind: "checker" | "circle" | "stripes", size: number): Matrix {
+export function generatedPattern(
+  kind: "checker" | "circle" | "stripes",
+  size: number,
+): Matrix {
   const out: Matrix = [];
   for (let y = 0; y < size; y++) {
     const row: number[] = [];
@@ -38,7 +41,7 @@ export function generatedPattern(kind: "checker" | "circle" | "stripes", size: n
       let v: number;
       if (kind === "checker") {
         const c = 8;
-        v = ((Math.floor(x / c) + Math.floor(y / c)) % 2 === 0) ? 1 : 0;
+        v = (Math.floor(x / c) + Math.floor(y / c)) % 2 === 0 ? 1 : 0;
       } else if (kind === "circle") {
         const dx = x - size / 2;
         const dy = y - size / 2;
