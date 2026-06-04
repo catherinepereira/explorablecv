@@ -4,6 +4,7 @@ import { ImageUploader } from './components/ImageUploader'
 import { PredictionStrip } from './components/PredictionStrip'
 import { References, type Reference } from './components/References'
 import { Section } from './components/Section'
+import { SeriesNav } from './components/SeriesNav'
 import { SiteHeader } from './components/SiteHeader'
 import { Timeline } from './components/Timeline'
 import { useRunAll } from './hooks/useRunAll'
@@ -99,6 +100,8 @@ export function App() {
           </a>
           .
         </SiteHeader>
+
+        <SeriesNav currentSlug="cnn-architecture-comparison" />
 
         <main className="flex flex-col gap-10 mt-2">
           <Section
