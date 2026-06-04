@@ -3,6 +3,7 @@ import { SingleConvMode } from "./modes/SingleConvMode";
 import { PlaygroundMode } from "./modes/PlaygroundMode";
 import { MultiLayerMode } from "./modes/MultiLayerMode";
 import { SiteHeader } from "./components/SiteHeader";
+import { SeriesNav } from "./components/SeriesNav";
 import { Section } from "./components/Section";
 import { References } from "./components/References";
 
@@ -76,6 +77,8 @@ export default function App() {
           how it shapes the output, then move up to multi-layer mode to watch
           feature maps build on each other.
         </SiteHeader>
+
+        <SeriesNav currentSlug="cnn-playground" />
 
         <main className="flex flex-col gap-10 mt-2">
           <div className="flex items-center bg-gray-100 dark:bg-zinc-800 rounded-lg p-0.5 text-sm w-fit">
