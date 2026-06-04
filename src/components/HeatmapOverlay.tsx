@@ -9,7 +9,12 @@ type Props = {
   alpha?: number;
 };
 
-export function HeatmapOverlay({ imageSrc, grid, signed, alpha = 0.75 }: Props) {
+export function HeatmapOverlay({
+  imageSrc,
+  grid,
+  signed,
+  alpha = 0.75,
+}: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -18,16 +23,16 @@ export function HeatmapOverlay({ imageSrc, grid, signed, alpha = 0.75 }: Props) 
   }, [grid, signed, alpha]);
 
   return (
-    <div className="relative w-full aspect-square overflow-hidden rounded-sm bg-white dark:bg-zinc-900">
+    <div className="relative aspect-square w-full overflow-hidden rounded-sm bg-white dark:bg-zinc-900">
       <img
         src={imageSrc}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover opacity-70"
+        className="absolute inset-0 h-full w-full object-cover opacity-70"
       />
       {grid && (
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 w-full h-full pointer-events-none"
+          className="pointer-events-none absolute inset-0 h-full w-full"
           style={{ filter: "blur(6px)" }}
         />
       )}

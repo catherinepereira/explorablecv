@@ -11,7 +11,7 @@ import { useExplorerStore } from "./stores/useExplorerStore";
 
 function Loading({ message }: { message: string }) {
   return (
-    <div className="text-sm text-gray-500 dark:text-zinc-500 py-12 text-center">
+    <div className="py-12 text-center text-sm text-gray-500 dark:text-zinc-500">
       {message}
     </div>
   );
@@ -19,8 +19,8 @@ function Loading({ message }: { message: string }) {
 
 function ErrorState({ message }: { message: string }) {
   return (
-    <div className="rounded-md border border-red-200 bg-red-50 text-red-600 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400 p-4 text-sm">
-      <div className="font-medium mb-1">Could not load data</div>
+    <div className="rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-600 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400">
+      <div className="mb-1 font-medium">Could not load data</div>
       <div>{message}</div>
       <div className="mt-2 text-xs text-red-600/70 dark:text-red-400/70">
         Make sure the bundle script from the training repo has run and the JSON
@@ -43,7 +43,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 dark:bg-zinc-900 dark:text-zinc-100">
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="mx-auto max-w-7xl px-6 py-8">
         <SiteHeader
           title="🔬 CV Interpretability Explorer"
           repo="cv-interpretability"
@@ -54,12 +54,13 @@ function App() {
             href="https://github.com/fastai/imagenette"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-500 dark:text-zinc-400 underline"
+            className="text-gray-500 underline dark:text-zinc-400"
           >
             ImageNette
           </a>{" "}
-          classifiers (Custom CNN, ResNet-18, ViT-S) through five interpretability methods (Grad-CAM, Score-CAM, Saliency Maps, LIME, and Attention Rollout) 
-          and their penultimate-layer UMAP projections.
+          classifiers (Custom CNN, ResNet-18, ViT-S) through five
+          interpretability methods (Grad-CAM, Score-CAM, Saliency Maps, LIME,
+          and Attention Rollout) and their penultimate-layer UMAP projections.
         </SiteHeader>
 
         <SeriesNav currentSlug="cv-interpretability" />
@@ -67,7 +68,7 @@ function App() {
         {state.status === "loading" && <Loading message="Loading dataset..." />}
         {state.status === "error" && <ErrorState message={state.error} />}
         {state.status === "ready" && (
-          <main className="flex flex-col gap-10 mt-2">
+          <main className="mt-2 flex flex-col gap-10">
             <StatsBar stats={state.data.modelStats} />
             <InterpretabilityTabs
               classes={state.data.classes}
@@ -82,7 +83,8 @@ function App() {
                 {
                   authors: "LeCun, Y., Bottou, L., Bengio, Y., & Haffner, P.",
                   year: 1998,
-                  title: "Gradient-Based Learning Applied to Document Recognition",
+                  title:
+                    "Gradient-Based Learning Applied to Document Recognition",
                   href: "http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf",
                 },
                 {
@@ -94,31 +96,36 @@ function App() {
                 {
                   authors: "Dosovitskiy, A., et al.",
                   year: 2021,
-                  title: "An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+                  title:
+                    "An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale",
                   href: "https://arxiv.org/abs/2010.11929",
                 },
                 {
                   authors: "Simonyan, K., Vedaldi, A., & Zisserman, A.",
                   year: 2014,
-                  title: "Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps",
+                  title:
+                    "Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps",
                   href: "https://arxiv.org/abs/1312.6034",
                 },
                 {
                   authors: "Ribeiro, M. T., Singh, S., & Guestrin, C.",
                   year: 2016,
-                  title: "“Why Should I Trust You?”: Explaining the Predictions of Any Classifier",
+                  title:
+                    "“Why Should I Trust You?”: Explaining the Predictions of Any Classifier",
                   href: "https://arxiv.org/abs/1602.04938",
                 },
                 {
                   authors: "Selvaraju, R. R., et al.",
                   year: 2017,
-                  title: "Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization",
+                  title:
+                    "Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization",
                   href: "https://arxiv.org/abs/1610.02391",
                 },
                 {
                   authors: "Wang, H., et al.",
                   year: 2020,
-                  title: "Score-CAM: Score-Weighted Visual Explanations for Convolutional Neural Networks",
+                  title:
+                    "Score-CAM: Score-Weighted Visual Explanations for Convolutional Neural Networks",
                   href: "https://arxiv.org/abs/1910.01279",
                 },
                 {

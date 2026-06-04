@@ -69,7 +69,10 @@ function PlotPanel({
 
   useEffect(() => {
     if (!ref.current) return;
-    const byClass = new Map<string, { x: number[]; y: number[]; text: string[] }>();
+    const byClass = new Map<
+      string,
+      { x: number[]; y: number[]; text: string[] }
+    >();
     for (const p of data.points) {
       const entry = byClass.get(p.label) ?? { x: [], y: [], text: [] };
       entry.x.push(p.x);
@@ -86,7 +89,10 @@ function PlotPanel({
         y: pts.y,
         text: pts.text,
         hovertemplate: "%{text}<extra>" + label + "</extra>",
-        marker: { size: 4, color: colorMap[label] ?? (isDark ? "#a1a1aa" : "#52525b") },
+        marker: {
+          size: 4,
+          color: colorMap[label] ?? (isDark ? "#a1a1aa" : "#52525b"),
+        },
       }),
     );
 
@@ -113,7 +119,7 @@ function PlotPanel({
     };
   }, [data, colorMap, isDark]);
 
-  return <div ref={ref} className="w-full aspect-square" />;
+  return <div ref={ref} className="aspect-square w-full" />;
 }
 
 type Props = {
@@ -137,34 +143,38 @@ export function UMAPPanel({ classes, umap }: Props) {
         feature space that separates the classes well."
     >
       <Card>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {MODEL_KEYS.map((m) =>
-          umap[m] ? (
-            <div key={m}>
-              <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-zinc-500 font-mono mb-2">
-                {MODEL_LABELS[m]}
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {MODEL_KEYS.map((m) =>
+            umap[m] ? (
+              <div key={m}>
+                <div className="mb-2 font-mono text-xs tracking-wider text-gray-500 uppercase dark:text-zinc-500">
+                  {MODEL_LABELS[m]}
+                </div>
+                <div className="overflow-hidden rounded-md border border-gray-200 dark:border-zinc-800">
+                  <PlotPanel
+                    data={umap[m]}
+                    colorMap={colorMap}
+                    isDark={isDark}
+                  />
+                </div>
               </div>
-              <div className="rounded-md border border-gray-200 dark:border-zinc-800 overflow-hidden">
-                <PlotPanel data={umap[m]} colorMap={colorMap} isDark={isDark} />
-              </div>
-            </div>
-          ) : null,
-        )}
-      </div>
-      <div className="mt-4 flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs">
-        {classes.map((label) => (
-          <span
-            key={label}
-            className="flex items-center gap-1 text-gray-500 dark:text-zinc-500"
-          >
+            ) : null,
+          )}
+        </div>
+        <div className="mt-4 flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs">
+          {classes.map((label) => (
             <span
-              className="inline-block w-2 h-2 rounded-full"
-              style={{ background: colorMap[label] }}
-            />
-            {label}
-          </span>
-        ))}
-      </div>
+              key={label}
+              className="flex items-center gap-1 text-gray-500 dark:text-zinc-500"
+            >
+              <span
+                className="inline-block h-2 w-2 rounded-full"
+                style={{ background: colorMap[label] }}
+              />
+              {label}
+            </span>
+          ))}
+        </div>
       </Card>
     </Section>
   );
