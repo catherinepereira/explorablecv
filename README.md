@@ -5,14 +5,14 @@ Six small networks trained on CIFAR-10 run client-side via ONNX Runtime Web, so 
 
 ## Architectures
 
-| Arch | Year | Params (this variant) | What it changed |
-| --- | --- | --- | --- |
-| LeNet-5 | 1998 | 83k | Showed conv+pool+FC end-to-end works |
-| AlexNet | 2012 | 7.0M | ReLU, dropout, GPU training |
-| VGG-11 | 2014 | 9.2M | Depth via stacks of 3x3 convs |
-| Inception-mini | 2014 | 397k | Multi-scale features, 1x1 bottleneck |
-| ResNet-20 | 2015 | 272k | Skip connections |
-| DenseNet-BC | 2016 | 630k | Concat all prior layers |
+| Arch           | Year | Params (this variant) | What it changed                      |
+| -------------- | ---- | --------------------- | ------------------------------------ |
+| LeNet-5        | 1998 | 83k                   | Showed conv+pool+FC end-to-end works |
+| AlexNet        | 2012 | 7.0M                  | ReLU, dropout, GPU training          |
+| VGG-11         | 2014 | 9.2M                  | Depth via stacks of 3x3 convs        |
+| Inception-mini | 2014 | 397k                  | Multi-scale features, 1x1 bottleneck |
+| ResNet-20      | 2015 | 272k                  | Skip connections                     |
+| DenseNet-BC    | 2016 | 630k                  | Concat all prior layers              |
 
 Param counts above are for the small CIFAR variants shipped with this demo. The original ImageNet / paper versions are larger (AlexNet ~60M, Inception/GoogLeNet ~6.8M, etc.).
 

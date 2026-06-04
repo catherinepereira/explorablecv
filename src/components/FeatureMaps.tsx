@@ -1,18 +1,18 @@
-import { useEffect, useRef } from 'react'
-import { renderFeatureMap } from '../utils/featureMap'
-import type { InferenceResult } from '../utils/inference'
+import { useEffect, useRef } from "react";
+import { renderFeatureMap } from "../utils/featureMap";
+import type { InferenceResult } from "../utils/inference";
 
-const MAX_CHANNELS = 16
+const MAX_CHANNELS = 16;
 
 export function FeatureMaps({ result }: { result: InferenceResult }) {
-  const names = Object.keys(result.featureMaps)
+  const names = Object.keys(result.featureMaps);
   if (names.length === 0) {
     return (
-      <div className="p-4 bg-gray-50/40 dark:bg-zinc-800/40 rounded-lg border border-gray-200 dark:border-zinc-800 text-gray-500 dark:text-zinc-500 text-sm">
-        This model's ONNX export does not include intermediate feature maps. Re-export with
-        additional outputs to enable this view.
+      <div className="rounded-lg border border-gray-200 bg-gray-50/40 p-4 text-sm text-gray-500 dark:border-zinc-800 dark:bg-zinc-800/40 dark:text-zinc-500">
+        This model's ONNX export does not include intermediate feature maps.
+        Re-export with additional outputs to enable this view.
       </div>
-    )
+    );
   }
   return (
     <div className="flex flex-col gap-4">
@@ -25,7 +25,7 @@ export function FeatureMaps({ result }: { result: InferenceResult }) {
         />
       ))}
     </div>
-  )
+  );
 }
 
 function FeatureMapRow({
@@ -33,17 +33,19 @@ function FeatureMapRow({
   data,
   shape,
 }: {
-  name: string
-  data: Float32Array
-  shape: readonly number[]
+  name: string;
+  data: Float32Array;
+  shape: readonly number[];
 }) {
-  const channels = Math.min(shape[1] ?? 1, MAX_CHANNELS)
+  const channels = Math.min(shape[1] ?? 1, MAX_CHANNELS);
   return (
-    <div className="p-4 bg-gray-50/40 dark:bg-zinc-800/40 rounded-lg border border-gray-200 dark:border-zinc-800">
-      <div className="flex items-baseline justify-between mb-3">
-        <div className="text-sm text-gray-900 dark:text-zinc-100 font-medium">{name}</div>
+    <div className="rounded-lg border border-gray-200 bg-gray-50/40 p-4 dark:border-zinc-800 dark:bg-zinc-800/40">
+      <div className="mb-3 flex items-baseline justify-between">
+        <div className="text-sm font-medium text-gray-900 dark:text-zinc-100">
+          {name}
+        </div>
         <div className="text-xs text-gray-500 dark:text-zinc-500">
-          {shape.join(' × ')} · showing first {channels} channels
+          {shape.join(" × ")} · showing first {channels} channels
         </div>
       </div>
       <div className="grid grid-cols-8 gap-1">
@@ -52,7 +54,7 @@ function FeatureMapRow({
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 function FeatureMapCanvas({
@@ -60,19 +62,19 @@ function FeatureMapCanvas({
   shape,
   channel,
 }: {
-  data: Float32Array
-  shape: readonly number[]
-  channel: number
+  data: Float32Array;
+  shape: readonly number[];
+  channel: number;
 }) {
-  const ref = useRef<HTMLCanvasElement>(null)
+  const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    if (ref.current) renderFeatureMap(ref.current, data, shape, channel)
-  }, [data, shape, channel])
+    if (ref.current) renderFeatureMap(ref.current, data, shape, channel);
+  }, [data, shape, channel]);
   return (
     <canvas
       ref={ref}
-      className="w-full aspect-square bg-white dark:bg-zinc-900 rounded-sm"
-      style={{ imageRendering: 'pixelated' }}
+      className="aspect-square w-full rounded-sm bg-white dark:bg-zinc-900"
+      style={{ imageRendering: "pixelated" }}
     />
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
-const DEV_FRONTEND_PORT = 5504
+const DEV_FRONTEND_PORT = 5504;
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
@@ -11,6 +11,6 @@ export default defineConfig({
     strictPort: true,
   },
   optimizeDeps: {
-    exclude: ['onnxruntime-web'],
+    exclude: ["onnxruntime-web"],
   },
-})
+});
