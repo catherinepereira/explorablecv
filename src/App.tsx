@@ -5,6 +5,7 @@ import { LayerStack } from './components/LayerStack'
 import { Predictions } from './components/Predictions'
 import { StatsPanel } from './components/StatsPanel'
 import { SiteHeader } from './components/SiteHeader'
+import { SeriesNav } from './components/SeriesNav'
 import { Section, Label } from './components/Section'
 import { References } from './components/References'
 
@@ -73,6 +74,8 @@ python scripts/export_activations.py --ckpt checkpoints/run1/best.pt --out ../cn
         . Pick an image and watch it move through the network. Each row is
         the feature maps a layer produced.
       </SiteHeader>
+
+      <SeriesNav currentSlug="cnn-visualizer" />
 
       <main className="flex flex-col gap-10 mt-2">
         {manifest.stats && (
