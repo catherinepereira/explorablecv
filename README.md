@@ -18,6 +18,7 @@ npm run dev
 ```
 
 The site reads `public/activations/manifest.json` and renders:
+
 - A strip of sample images you can click between
 - Each conv/pool layer's feature maps as a grid of grayscale tiles
 - The model's predicted class probabilities
