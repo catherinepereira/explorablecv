@@ -20,7 +20,7 @@ export function Section({ id, number, title, blurb, children }: Props) {
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-zinc-100">{title}</h2>
       </div>
       {blurb && (
-        <p className="text-sm text-gray-600 dark:text-zinc-400 mb-4 max-w-3xl leading-relaxed">
+        <p className="text-sm text-gray-600 dark:text-zinc-400 mb-4 max-w-7xl leading-relaxed">
           {blurb}
         </p>
       )}
@@ -49,7 +49,7 @@ export function Label({ children }: { children: ReactNode }) {
 
 export function Prose({ children }: { children: ReactNode }) {
   return (
-    <div className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed space-y-3 max-w-3xl">
+    <div className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed space-y-3 max-w-7xl">
       {children}
     </div>
   )

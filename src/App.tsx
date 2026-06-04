@@ -3,6 +3,7 @@ import BpeWorker from "./bpe.worker.ts?worker";
 import type { BPEResult, BPEStep, Token } from "./bpe.types";
 import { BYTE_TO_UNICODE } from "./bpe";
 import { SiteHeader } from "./components/SiteHeader";
+import { SeriesNav } from "./components/SeriesNav";
 import { StepControls } from "./components/StepControls";
 import { References } from "./components/References";
 
@@ -398,6 +399,8 @@ export default function App() {
           up a vocabulary of subword tokens. Step through each merge to see how
           the algorithm works.
         </SiteHeader>
+
+        <SeriesNav currentSlug="bpe-playground" />
 
         <main className="flex flex-col gap-10 mt-2">
         <div className="flex flex-col gap-4">
