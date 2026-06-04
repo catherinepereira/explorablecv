@@ -23,3 +23,7 @@ The site reads `public/activations/manifest.json` and renders:
 - The model's predicted class probabilities
 
 If `manifest.json` is missing it shows instructions for generating it.
+
+## Credits
+
+The favicon is the "framed picture" emoji from [Twemoji](https://github.com/twitter/twemoji) by Twitter, Inc. and other contributors, licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
