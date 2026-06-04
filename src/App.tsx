@@ -60,14 +60,7 @@ const TokenChip = memo(function TokenChip({
   return (
     <span
       onClick={onClick}
-      className={`
-        inline font-mono text-sm leading-7 px-0.5 py-0.5 border-r border-black/10 break-all transition-opacity duration-150
-        ${isWhitespace ? "bg-gray-100 dark:bg-zinc-800 text-gray-400 dark:text-zinc-500 text-xs" : `${tokenColor(token)} text-gray-900`}
-        ${isNew ? "token-new" : ""}
-        ${viewMode === "utf8" && !isWhitespace ? "text-xs tracking-wider" : ""}
-        ${dimmed ? "opacity-20" : ""}
-        cursor-pointer
-      `}
+      className={`inline border-r border-black/10 px-0.5 py-0.5 font-mono text-sm leading-7 break-all transition-opacity duration-150 ${isWhitespace ? "bg-gray-100 text-xs text-gray-400 dark:bg-zinc-800 dark:text-zinc-500" : `${tokenColor(token)} text-gray-900`} ${isNew ? "token-new" : ""} ${viewMode === "utf8" && !isWhitespace ? "text-xs tracking-wider" : ""} ${dimmed ? "opacity-20" : ""} cursor-pointer`}
     >
       {display}
     </span>
@@ -94,7 +87,7 @@ function TokenDisplay({
 
   return (
     <div
-      className={`break-all overflow-hidden ${viewMode === "utf8" ? "leading-9" : "leading-8"}`}
+      className={`overflow-hidden break-all ${viewMode === "utf8" ? "leading-9" : "leading-8"}`}
     >
       {step.tokens.map((token, ti) => {
         const hasNewline = token.includes(GPT2_NEWLINE);
@@ -138,7 +131,7 @@ function MergeList({
   }, [currentStep]);
 
   return (
-    <div className="flex flex-col gap-0.5 overflow-y-auto max-h-[600px] pr-1">
+    <div className="flex max-h-[600px] flex-col gap-0.5 overflow-y-auto pr-1">
       {steps.map((step) => {
         const isActive = step.stepIndex === currentStep;
         return (
@@ -146,34 +139,33 @@ function MergeList({
             key={step.stepIndex}
             ref={isActive ? activeRef : null}
             onClick={() => onSelectStep(step.stepIndex)}
-            className={`
-              text-left px-3 py-1.5 rounded text-sm transition-colors cursor-pointer
-              ${
-                isActive
-                  ? "bg-blue-50 dark:bg-blue-950/30 border-l-3 border-blue-500 dark:border-blue-500 font-medium"
-                  : "hover:bg-gray-50 dark:hover:bg-zinc-800/40 border-l-3 border-transparent"
-              }
-            `}
+            className={`cursor-pointer rounded px-3 py-1.5 text-left text-sm transition-colors ${
+              isActive
+                ? "border-l-3 border-blue-500 bg-blue-50 font-medium dark:border-blue-500 dark:bg-blue-950/30"
+                : "border-l-3 border-transparent hover:bg-gray-50 dark:hover:bg-zinc-800/40"
+            } `}
           >
             {step.stepIndex === 0 ? (
-              <span className="text-gray-500 dark:text-zinc-500">Initial characters</span>
+              <span className="text-gray-500 dark:text-zinc-500">
+                Initial characters
+              </span>
             ) : (
               <div className="flex items-center gap-1.5">
-                <span className="text-gray-400 dark:text-zinc-500 w-6 text-xs">
+                <span className="w-6 text-xs text-gray-400 dark:text-zinc-500">
                   {step.stepIndex}
                 </span>
-                <code className="text-xs bg-gray-100 dark:bg-zinc-800 px-1 rounded">
+                <code className="rounded bg-gray-100 px-1 text-xs dark:bg-zinc-800">
                   {formatToken(step.mergedPair![0], viewMode)}
                 </code>
                 <span className="text-gray-400 dark:text-zinc-500">+</span>
-                <code className="text-xs bg-gray-100 dark:bg-zinc-800 px-1 rounded">
+                <code className="rounded bg-gray-100 px-1 text-xs dark:bg-zinc-800">
                   {formatToken(step.mergedPair![1], viewMode)}
                 </code>
                 <span className="text-gray-400 dark:text-zinc-500">&rarr;</span>
-                <code className="text-xs bg-blue-50 dark:bg-blue-950/30 px-1 rounded font-semibold text-blue-700 dark:text-blue-300">
+                <code className="rounded bg-blue-50 px-1 text-xs font-semibold text-blue-700 dark:bg-blue-950/30 dark:text-blue-300">
                   {formatToken(step.newToken!, viewMode)}
                 </code>
-                <span className="text-gray-400 dark:text-zinc-500 text-xs ml-auto">
+                <span className="ml-auto text-xs text-gray-400 dark:text-zinc-500">
                   &times;{step.frequency}
                 </span>
               </div>
@@ -200,16 +192,24 @@ function Stats({
 
   return (
     <div className="flex gap-6 text-sm">
-      <div className="flex flex-col items-center px-4 py-2 bg-gray-50 dark:bg-zinc-800/40 rounded-lg">
-        <span className="text-lg font-bold text-gray-900 dark:text-zinc-100">{charCount}</span>
-        <span className="text-xs text-gray-500 dark:text-zinc-500">Characters</span>
+      <div className="flex flex-col items-center rounded-lg bg-gray-50 px-4 py-2 dark:bg-zinc-800/40">
+        <span className="text-lg font-bold text-gray-900 dark:text-zinc-100">
+          {charCount}
+        </span>
+        <span className="text-xs text-gray-500 dark:text-zinc-500">
+          Characters
+        </span>
       </div>
-      <div className="flex flex-col items-center px-4 py-2 bg-gray-50 dark:bg-zinc-800/40 rounded-lg">
-        <span className="text-lg font-bold text-gray-900 dark:text-zinc-100">{mergeCount}</span>
+      <div className="flex flex-col items-center rounded-lg bg-gray-50 px-4 py-2 dark:bg-zinc-800/40">
+        <span className="text-lg font-bold text-gray-900 dark:text-zinc-100">
+          {mergeCount}
+        </span>
         <span className="text-xs text-gray-500 dark:text-zinc-500">Merges</span>
       </div>
-      <div className="flex flex-col items-center px-4 py-2 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
-        <span className="text-lg font-bold text-blue-700 dark:text-blue-300">{tokenCount}</span>
+      <div className="flex flex-col items-center rounded-lg bg-blue-50 px-4 py-2 dark:bg-blue-950/30">
+        <span className="text-lg font-bold text-blue-700 dark:text-blue-300">
+          {tokenCount}
+        </span>
         <span className="text-xs text-gray-500 dark:text-zinc-500">Tokens</span>
       </div>
     </div>
@@ -226,27 +226,29 @@ function TokenInfoPanel({
   onClear: () => void;
 }) {
   return (
-    <div className="rounded-lg border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 w-44">
-      <div className="flex items-center justify-between mb-3">
-        <h2 className="text-xs font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wide">
+    <div className="w-44 rounded-lg border border-gray-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="mb-3 flex items-center justify-between">
+        <h2 className="text-xs font-semibold tracking-wide text-gray-400 uppercase dark:text-zinc-500">
           Selected Token
         </h2>
         <button
           onClick={onClear}
-          className="text-gray-400 dark:text-zinc-500 hover:text-gray-600 text-xs cursor-pointer"
+          className="cursor-pointer text-xs text-gray-400 hover:text-gray-600 dark:text-zinc-500"
         >
           &times;
         </button>
       </div>
       <div className="flex flex-col items-center gap-3 py-2">
         <span
-          className={`inline-block font-mono text-lg px-3 py-1.5 rounded ${tokenColor(token)}`}
+          className={`inline-block rounded px-3 py-1.5 font-mono text-lg ${tokenColor(token)}`}
         >
           {token.replace(RE_NEWLINE, "↵").replace(RE_SPACE, "␣")}
         </span>
         <div className="text-center">
-          <span className="text-2xl font-bold text-gray-900 dark:text-zinc-100">{count}</span>
-          <span className="text-xs text-gray-500 dark:text-zinc-500 block">
+          <span className="text-2xl font-bold text-gray-900 dark:text-zinc-100">
+            {count}
+          </span>
+          <span className="block text-xs text-gray-500 dark:text-zinc-500">
             {count === 1 ? "occurrence" : "occurrences"}
           </span>
         </div>
@@ -258,7 +260,7 @@ function TokenInfoPanel({
 function LoadingOverlay() {
   return (
     <div className="absolute top-2 right-2 z-10">
-      <div className="h-5 w-5 border-2 border-blue-600 dark:border-blue-500 border-t-transparent rounded-full animate-spin" />
+      <div className="h-5 w-5 animate-spin rounded-full border-2 border-blue-600 border-t-transparent dark:border-blue-500" />
     </div>
   );
 }
@@ -384,138 +386,138 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 dark:bg-zinc-900 dark:text-zinc-100">
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="mx-auto max-w-7xl px-6 py-8">
         <SiteHeader title="🧩 BPE Playground" repo="bpe-playground">
           <a
             href="https://en.wikipedia.org/wiki/Byte-pair_encoding"
             target="_blank"
-            className="underline text-gray-700 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-zinc-100"
+            className="text-gray-700 underline hover:text-gray-900 dark:text-zinc-300 dark:hover:text-zinc-100"
           >
             Byte Pair Encoding
           </a>{" "}
           is a tokenization algorithm that iteratively merges the most frequent
           pair of adjacent tokens. This visualizer uses the GPT-2 variant, which
-          starts from individual bytes (via a byte-to-unicode mapping) and builds
-          up a vocabulary of subword tokens. Step through each merge to see how
-          the algorithm works.
+          starts from individual bytes (via a byte-to-unicode mapping) and
+          builds up a vocabulary of subword tokens. Step through each merge to
+          see how the algorithm works.
         </SiteHeader>
 
         <SeriesNav currentSlug="bpe-playground" />
 
-        <main className="flex flex-col gap-10 mt-2">
-        <div className="flex flex-col gap-4">
-        <textarea
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-          placeholder="Enter text to tokenize..."
-          rows={3}
-          maxLength={10000}
-          className="w-full rounded-lg border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
-        />
-
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-          <Stats
-            inputText={inputText}
-            bpeResult={bpeResult}
-            currentStep={currentStep}
-          />
-          <div className="flex-1 max-w-xl flex items-center gap-3">
-            <StepControls
-              currentStep={currentStep}
-              maxStep={Math.max(0, totalSteps - 1)}
-              isPlaying={isPlaying}
-              onSetStep={handleSetStep}
-              onTogglePlay={handleTogglePlay}
+        <main className="mt-2 flex flex-col gap-10">
+          <div className="flex flex-col gap-4">
+            <textarea
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              placeholder="Enter text to tokenize..."
+              rows={3}
+              maxLength={10000}
+              className="w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-3 font-mono text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900"
             />
-            <div className="flex items-center gap-1.5 shrink-0">
-              <label className="text-xs text-gray-400 dark:text-zinc-500 whitespace-nowrap">
-                Max
-              </label>
-              <input
-                type="number"
-                min={1}
-                value={maxMerges}
-                onChange={(e) => setMaxMerges(e.target.value)}
-                placeholder="∞"
-                className="w-16 rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-          </div>
-        </div>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
-          <div className="relative rounded-lg border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-3">
-            <h2 className="text-xs font-semibold text-gray-400 dark:text-zinc-500 mb-2 uppercase tracking-wide">
-              Merges ({bpeResult ? bpeResult.steps.length - 1 : 0})
-            </h2>
-            {bpeResult && bpeResult.steps.length > 0 ? (
-              <MergeList
-                steps={bpeResult.steps}
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+              <Stats
+                inputText={inputText}
+                bpeResult={bpeResult}
                 currentStep={currentStep}
-                onSelectStep={handleSetStep}
-                viewMode={viewMode}
               />
-            ) : (
-              <p className="text-sm text-gray-300 dark:text-zinc-600 py-4 text-center">
-                {isLoading ? "\u00A0" : "No merges yet"}
-              </p>
-            )}
-            {isLoading && <LoadingOverlay />}
-          </div>
-
-          <div className="relative rounded-lg border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 min-w-0">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xs font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wide">
-                Tokens
-              </h2>
-              <div className="flex items-center bg-gray-100 dark:bg-zinc-800 rounded-lg p-0.5 text-xs">
-                <button
-                  onClick={() => setViewMode("text")}
-                  className={`px-3 py-1 rounded-md transition-colors cursor-pointer ${
-                    viewMode === "text"
-                      ? "bg-white dark:bg-zinc-900 text-gray-900 dark:text-zinc-100 shadow-sm font-medium"
-                      : "text-gray-500 dark:text-zinc-500 hover:text-gray-700 dark:hover:text-zinc-300"
-                  }`}
-                >
-                  Text
-                </button>
-                <button
-                  onClick={() => setViewMode("utf8")}
-                  className={`px-3 py-1 rounded-md transition-colors cursor-pointer ${
-                    viewMode === "utf8"
-                      ? "bg-white dark:bg-zinc-900 text-gray-900 dark:text-zinc-100 shadow-sm font-medium"
-                      : "text-gray-500 dark:text-zinc-500 hover:text-gray-700 dark:hover:text-zinc-300"
-                  }`}
-                >
-                  UTF-8
-                </button>
+              <div className="flex max-w-xl flex-1 items-center gap-3">
+                <StepControls
+                  currentStep={currentStep}
+                  maxStep={Math.max(0, totalSteps - 1)}
+                  isPlaying={isPlaying}
+                  onSetStep={handleSetStep}
+                  onTogglePlay={handleTogglePlay}
+                />
+                <div className="flex shrink-0 items-center gap-1.5">
+                  <label className="text-xs whitespace-nowrap text-gray-400 dark:text-zinc-500">
+                    Max
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    value={maxMerges}
+                    onChange={(e) => setMaxMerges(e.target.value)}
+                    placeholder="∞"
+                    className="w-16 rounded border border-gray-300 bg-white px-2 py-1 font-mono text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900"
+                  />
+                </div>
               </div>
             </div>
-            {currentStepData ? (
-              <TokenDisplay
-                step={currentStepData}
-                viewMode={viewMode}
-                selectedToken={selectedToken}
-                onSelectToken={setSelectedToken}
-              />
-            ) : (
-              <p className="text-sm text-gray-300 dark:text-zinc-600 py-8 text-center">
-                {isLoading ? "\u00A0" : "Enter text above to see tokens"}
-              </p>
-            )}
-            {isLoading && <LoadingOverlay />}
-            {selectedToken && (
-              <div className="absolute top-4 -right-48 z-20">
-                <TokenInfoPanel
-                  token={selectedToken}
-                  count={selectedTokenCount}
-                  onClear={() => setSelectedToken(null)}
-                />
-              </div>
-            )}
           </div>
-        </div>
+
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_1fr]">
+            <div className="relative rounded-lg border border-gray-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-900">
+              <h2 className="mb-2 text-xs font-semibold tracking-wide text-gray-400 uppercase dark:text-zinc-500">
+                Merges ({bpeResult ? bpeResult.steps.length - 1 : 0})
+              </h2>
+              {bpeResult && bpeResult.steps.length > 0 ? (
+                <MergeList
+                  steps={bpeResult.steps}
+                  currentStep={currentStep}
+                  onSelectStep={handleSetStep}
+                  viewMode={viewMode}
+                />
+              ) : (
+                <p className="py-4 text-center text-sm text-gray-300 dark:text-zinc-600">
+                  {isLoading ? "\u00A0" : "No merges yet"}
+                </p>
+              )}
+              {isLoading && <LoadingOverlay />}
+            </div>
+
+            <div className="relative min-w-0 rounded-lg border border-gray-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
+              <div className="mb-3 flex items-center justify-between">
+                <h2 className="text-xs font-semibold tracking-wide text-gray-400 uppercase dark:text-zinc-500">
+                  Tokens
+                </h2>
+                <div className="flex items-center rounded-lg bg-gray-100 p-0.5 text-xs dark:bg-zinc-800">
+                  <button
+                    onClick={() => setViewMode("text")}
+                    className={`cursor-pointer rounded-md px-3 py-1 transition-colors ${
+                      viewMode === "text"
+                        ? "bg-white font-medium text-gray-900 shadow-sm dark:bg-zinc-900 dark:text-zinc-100"
+                        : "text-gray-500 hover:text-gray-700 dark:text-zinc-500 dark:hover:text-zinc-300"
+                    }`}
+                  >
+                    Text
+                  </button>
+                  <button
+                    onClick={() => setViewMode("utf8")}
+                    className={`cursor-pointer rounded-md px-3 py-1 transition-colors ${
+                      viewMode === "utf8"
+                        ? "bg-white font-medium text-gray-900 shadow-sm dark:bg-zinc-900 dark:text-zinc-100"
+                        : "text-gray-500 hover:text-gray-700 dark:text-zinc-500 dark:hover:text-zinc-300"
+                    }`}
+                  >
+                    UTF-8
+                  </button>
+                </div>
+              </div>
+              {currentStepData ? (
+                <TokenDisplay
+                  step={currentStepData}
+                  viewMode={viewMode}
+                  selectedToken={selectedToken}
+                  onSelectToken={setSelectedToken}
+                />
+              ) : (
+                <p className="py-8 text-center text-sm text-gray-300 dark:text-zinc-600">
+                  {isLoading ? "\u00A0" : "Enter text above to see tokens"}
+                </p>
+              )}
+              {isLoading && <LoadingOverlay />}
+              {selectedToken && (
+                <div className="absolute top-4 -right-48 z-20">
+                  <TokenInfoPanel
+                    token={selectedToken}
+                    count={selectedTokenCount}
+                    onClear={() => setSelectedToken(null)}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
 
           <References
             items={[
@@ -533,7 +535,8 @@ export default function App() {
                 href: "https://arxiv.org/abs/1508.07909",
               },
               {
-                authors: "Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I.",
+                authors:
+                  "Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I.",
                 year: 2019,
                 title:
                   "Language Models are Unsupervised Multitask Learners (GPT-2, byte-level BPE)",
