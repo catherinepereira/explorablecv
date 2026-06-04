@@ -60,7 +60,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-gray-900 dark:bg-zinc-900 dark:text-zinc-100">
       <div className="max-w-7xl mx-auto px-6 py-8">
-        <SiteHeader title="CNN Playground" repo="cnn-playground">
+        <SiteHeader title="🖍️ CNN Playground" repo="cnn-playground">
           A{" "}
           <a
             href="https://en.wikipedia.org/wiki/Convolutional_neural_network"
