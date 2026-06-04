@@ -1,4 +1,4 @@
-const SERIES_URL = "https://github.com/stars/catherinepereira/lists/cat-s-explorables";
+const SERIES_URL = "https://github.com/stars/catherinepereira/lists/explorables";
 
 type SeriesItem = {
   slug: string;
