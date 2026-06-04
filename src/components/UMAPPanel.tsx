@@ -3,6 +3,7 @@ import Plotly from "plotly.js-dist-min";
 
 import { MODEL_KEYS, MODEL_LABELS, type ModelKey } from "../config";
 import type { UmapData } from "../types";
+import { Section, Card } from "./Section";
 
 const PALETTE_LIGHT = [
   "#2563eb",
@@ -125,26 +126,17 @@ export function UMAPPanel({ classes, umap }: Props) {
   const colorMap = buildColorMap(classes, isDark);
 
   return (
-    <div className="bg-gray-50 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800 rounded-md p-4">
-      <div className="flex items-center justify-between mb-3 gap-4 flex-wrap">
-        <h2 className="text-sm font-medium text-gray-900 dark:text-zinc-100">
-          Penultimate-layer UMAP
-        </h2>
-        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-          {classes.map((label) => (
-            <span
-              key={label}
-              className="flex items-center gap-1 text-gray-500 dark:text-zinc-500"
-            >
-              <span
-                className="inline-block w-2 h-2 rounded-full"
-                style={{ background: colorMap[label] }}
-              />
-              {label}
-            </span>
-          ))}
-        </div>
-      </div>
+    <Section
+      id="umap"
+      number="03"
+      title="Penultimate-layer UMAP"
+      blurb="Each point is one validation image. The 2D position comes from running
+        UMAP on the model's penultimate-layer features (the vector right before
+        the classifier head). Images the model considers similar land near each
+        other, so tight and disparate class-colored clusters mean the model has learned a
+        feature space that separates the classes well."
+    >
+      <Card>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {MODEL_KEYS.map((m) =>
           umap[m] ? (
@@ -152,18 +144,28 @@ export function UMAPPanel({ classes, umap }: Props) {
               <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-zinc-500 font-mono mb-2">
                 {MODEL_LABELS[m]}
               </div>
-              <PlotPanel data={umap[m]} colorMap={colorMap} isDark={isDark} />
+              <div className="rounded-md border border-gray-200 dark:border-zinc-800 overflow-hidden">
+                <PlotPanel data={umap[m]} colorMap={colorMap} isDark={isDark} />
+              </div>
             </div>
           ) : null,
         )}
       </div>
-      <p className="mt-4 text-sm text-gray-600 dark:text-zinc-400 leading-relaxed">
-        Each point is one validation image. The 2D position comes from running
-        UMAP on the model's penultimate-layer features (the vector right before
-        the classifier head). Images the model considers similar land near each
-        other, so tight and disparate class-colored clusters mean the model has learned a
-        feature space that separates the classes well.
-      </p>
-    </div>
+      <div className="mt-4 flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs">
+        {classes.map((label) => (
+          <span
+            key={label}
+            className="flex items-center gap-1 text-gray-500 dark:text-zinc-500"
+          >
+            <span
+              className="inline-block w-2 h-2 rounded-full"
+              style={{ background: colorMap[label] }}
+            />
+            {label}
+          </span>
+        ))}
+      </div>
+      </Card>
+    </Section>
   );
 }

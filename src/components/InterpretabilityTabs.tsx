@@ -15,6 +15,7 @@ import type {
   Sample,
 } from "../types";
 import { HeatmapOverlay } from "./HeatmapOverlay";
+import { Section, Card } from "./Section";
 
 type MethodDescription = {
   body: string;
@@ -156,11 +157,13 @@ export function InterpretabilityTabs({
   const sample = findSample(samples, selectedId);
 
   return (
-    <div className="bg-gray-50 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800 rounded-md p-4">
-      <div className="flex items-center justify-between mb-4 gap-4 flex-wrap">
-        <h2 className="text-sm font-medium text-gray-900 dark:text-zinc-100">
-          Per-image interpretability
-        </h2>
+    <Section
+      id="per-image"
+      number="02"
+      title="Per-image interpretability"
+      blurb="Pick an image and a method to see where each model looks when it makes its prediction. A green border means the model classified the image correctly, red means it missed."
+    >
+      <div className="flex justify-end">
         <div className="flex gap-1 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-md p-1">
           {METHODS.map((m) => (
             <button
@@ -180,6 +183,7 @@ export function InterpretabilityTabs({
         </div>
       </div>
 
+      <Card>
       {!sample ? (
         <p className="text-sm text-gray-500 dark:text-zinc-500">
           Pick an image below to see interpretability output.
@@ -296,6 +300,7 @@ export function InterpretabilityTabs({
           })}
         </div>
       </div>
-    </div>
+      </Card>
+    </Section>
   );
 }

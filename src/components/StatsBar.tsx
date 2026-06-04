@@ -1,5 +1,6 @@
 import { MODEL_KEYS, MODEL_LABELS, type ModelKey } from "../config";
 import type { ModelStat } from "../types";
+import { Section } from "./Section";
 
 const MODEL_PARAMS: Record<ModelKey, string> = {
   custom_cnn: "4.5M",
@@ -12,7 +13,13 @@ type Props = { stats: ModelStat[] };
 export function StatsBar({ stats }: Props) {
   const byModel = new Map(stats.map((s) => [s.model, s]));
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <Section
+      id="models"
+      number="01"
+      title="Models"
+      blurb="Three ImageNette classifiers of increasing capacity. Validation accuracy and parameter count set the context for the interpretability methods below."
+    >
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {MODEL_KEYS.map((m) => {
         const s = byModel.get(m);
         const acc = s?.val_accuracy ?? s?.best_val_acc;
@@ -41,6 +48,7 @@ export function StatsBar({ stats }: Props) {
           </div>
         );
       })}
-    </div>
+      </div>
+    </Section>
   );
 }

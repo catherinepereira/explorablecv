@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { InterpretabilityTabs } from "./components/InterpretabilityTabs";
 import { References } from "./components/References";
 import { SiteHeader } from "./components/SiteHeader";
+import { SeriesNav } from "./components/SeriesNav";
 import { StatsBar } from "./components/StatsBar";
 import { UMAPPanel } from "./components/UMAPPanel";
 import { useDataset } from "./hooks/useDataset";
@@ -60,6 +61,8 @@ function App() {
           classifiers (Custom CNN, ResNet-18, ViT-S) through five interpretability methods (Grad-CAM, Score-CAM, Saliency Maps, LIME, and Attention Rollout) 
           and their penultimate-layer UMAP projections.
         </SiteHeader>
+
+        <SeriesNav currentSlug="cv-interpretability" />
 
         {state.status === "loading" && <Loading message="Loading dataset..." />}
         {state.status === "error" && <ErrorState message={state.error} />}
