@@ -2,8 +2,9 @@ import { useState, useEffect, useRef, useCallback, memo } from "react";
 import BpeWorker from "./bpe.worker.ts?worker";
 import type { BPEResult, BPEStep, Token } from "./bpe.types";
 import { BYTE_TO_UNICODE } from "./bpe";
-import { SiteHeader } from "./SiteHeader";
-import { StepControls } from "./StepControls";
+import { SiteHeader } from "./components/SiteHeader";
+import { StepControls } from "./components/StepControls";
+import { References } from "./components/References";
 
 type ViewMode = "text" | "utf8";
 
@@ -397,45 +398,19 @@ export default function App() {
           up a vocabulary of subword tokens. Step through each merge to see how
           the algorithm works.
         </SiteHeader>
-        <p className="text-xs text-gray-500 dark:text-zinc-500 mb-5">
-          Sources:{" "}
-          <a
-            href="https://web.archive.org/web/20160326050037/http://www.csse.monash.edu.au/cluster/RJK/Compress/problem.html"
-            target="_blank"
-            className="underline hover:text-gray-700 dark:hover:text-zinc-300"
-          >
-            Gage (1994)
-          </a>
-          {" · "}
-          <a
-            href="https://arxiv.org/abs/1508.07909"
-            target="_blank"
-            className="underline hover:text-gray-700 dark:hover:text-zinc-300"
-          >
-            Sennrich et al. (2016) for NMT
-          </a>
-          {" · "}
-          <a
-            href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf"
-            target="_blank"
-            className="underline hover:text-gray-700 dark:hover:text-zinc-300"
-          >
-            GPT-2 byte-level BPE
-          </a>
-        </p>
 
-        <div className="mb-4">
-          <textarea
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            placeholder="Enter text to tokenize..."
-            rows={3}
-            maxLength={10000}
-            className="w-full rounded-lg border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
-          />
-        </div>
+        <main className="flex flex-col gap-10 mt-2">
+        <div className="flex flex-col gap-4">
+        <textarea
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          placeholder="Enter text to tokenize..."
+          rows={3}
+          maxLength={10000}
+          className="w-full rounded-lg border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
+        />
 
-        <div className="mb-5 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
           <Stats
             inputText={inputText}
             bpeResult={bpeResult}
@@ -463,6 +438,7 @@ export default function App() {
               />
             </div>
           </div>
+        </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
@@ -538,6 +514,31 @@ export default function App() {
           </div>
         </div>
 
+          <References
+            items={[
+              {
+                authors: "Gage, P.",
+                year: 1994,
+                title: "A New Algorithm for Data Compression",
+                href: "https://web.archive.org/web/20160326050037/http://www.csse.monash.edu.au/cluster/RJK/Compress/problem.html",
+              },
+              {
+                authors: "Sennrich, R., Haddow, B., & Birch, A.",
+                year: 2016,
+                title:
+                  "Neural Machine Translation of Rare Words with Subword Units",
+                href: "https://arxiv.org/abs/1508.07909",
+              },
+              {
+                authors: "Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I.",
+                year: 2019,
+                title:
+                  "Language Models are Unsupervised Multitask Learners (GPT-2, byte-level BPE)",
+                href: "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+              },
+            ]}
+          />
+        </main>
       </div>
     </div>
   );

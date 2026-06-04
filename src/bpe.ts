@@ -1,25 +1,17 @@
 import type { Token, BPEResult, BPEStep } from "./bpe.types";
-export type { Token, BPEStep, BPEResult } from "./bpe.types";
 
 const PAIR_SEP = "\0";
 const TEXT_ENCODER = new TextEncoder();
 export const BYTE_TO_UNICODE = bytesToUnicode();
 
-/**
- * GPT-2 pre-tokenization regex pattern
- *
- * https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/encoder.py#L53
- */
+// GPT-2 pre-tokenization regex pattern.
+// https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/encoder.py#L53
 const GPT2_PAT =
   /'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+/gu;
 
-/**
- * From GPT-2 bytes_to_unicode mapping
- *
- * Maps each byte (0-255) to a unicode character and avoids whitespace/control characters
- *
- * https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/encoder.py#L19
- */
+// GPT-2 bytes_to_unicode mapping: each byte (0-255) maps to a printable unicode
+// character, skipping whitespace and control characters so tokens stay visible.
+// https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/encoder.py#L19
 function bytesToUnicode(): Map<number, string> {
   const bs: number[] = [];
   const cs: number[] = [];
@@ -57,9 +49,6 @@ function bytesToUnicode(): Map<number, string> {
   return result;
 }
 
-/**
- * Encode a text chunk into byte-level unicode tokens using GPT-2's mapping
- */
 function encodeChunk(chunk: string): Token[] {
   const bytes = TEXT_ENCODER.encode(chunk);
   return Array.from(bytes).map((b) => BYTE_TO_UNICODE.get(b)!);

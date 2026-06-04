@@ -2,16 +2,14 @@ import type { ReactNode } from "react";
 
 type Props = {
   currentStep: number;
-  /** Last valid step index. The control treats the valid range as [0, maxStep]. */
+  // Last valid step index. The control treats the valid range as [0, maxStep]
   maxStep: number;
   isPlaying: boolean;
   onSetStep: (step: number) => void;
   onTogglePlay: () => void;
-  /** Optional content rendered to the right of the scrubber (e.g. speed selector). */
   rightSlot?: ReactNode;
-  /** CSS class to apply to the scrubber input. Defaults to flex-1. */
   scrubberClassName?: string;
-  /** When true, the play button is disabled. Defaults to disabling when maxStep === 0. */
+  // Defaults to disabling when maxStep === 0
   disablePlay?: boolean;
 };
 
