@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { InterpretabilityTabs } from "./components/InterpretabilityTabs";
+import { References } from "./components/References";
 import { SiteHeader } from "./components/SiteHeader";
 import { StatsBar } from "./components/StatsBar";
 import { UMAPPanel } from "./components/UMAPPanel";
@@ -43,7 +44,7 @@ function App() {
     <div className="min-h-screen bg-white text-gray-900 dark:bg-zinc-900 dark:text-zinc-100">
       <div className="max-w-7xl mx-auto px-6 py-8">
         <SiteHeader
-          title="CV Interpretability Explorer"
+          title="🔬 CV Interpretability Explorer"
           repo="cv-interpretability"
           modelRepo="cv-interpretability-model"
         >
@@ -56,15 +57,14 @@ function App() {
           >
             ImageNette
           </a>{" "}
-          classifiers (Custom CNN, ResNet-18, ViT-S) through five
-          interpretability methods and their penultimate-layer UMAP
-          projections.
+          classifiers (Custom CNN, ResNet-18, ViT-S) through five interpretability methods (Grad-CAM, Score-CAM, Saliency Maps, LIME, and Attention Rollout) 
+          and their penultimate-layer UMAP projections.
         </SiteHeader>
 
         {state.status === "loading" && <Loading message="Loading dataset..." />}
         {state.status === "error" && <ErrorState message={state.error} />}
         {state.status === "ready" && (
-          <main className="flex flex-col gap-6 mt-2">
+          <main className="flex flex-col gap-10 mt-2">
             <StatsBar stats={state.data.modelStats} />
             <InterpretabilityTabs
               classes={state.data.classes}
@@ -74,6 +74,58 @@ function App() {
               rollout={state.data.rollout}
             />
             <UMAPPanel classes={state.data.classes} umap={state.data.umap} />
+            <References
+              items={[
+                {
+                  authors: "LeCun, Y., Bottou, L., Bengio, Y., & Haffner, P.",
+                  year: 1998,
+                  title: "Gradient-Based Learning Applied to Document Recognition",
+                  href: "http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf",
+                },
+                {
+                  authors: "He, K., Zhang, X., Ren, S., & Sun, J.",
+                  year: 2015,
+                  title: "Deep Residual Learning for Image Recognition",
+                  href: "https://arxiv.org/abs/1512.03385",
+                },
+                {
+                  authors: "Dosovitskiy, A., et al.",
+                  year: 2021,
+                  title: "An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+                  href: "https://arxiv.org/abs/2010.11929",
+                },
+                {
+                  authors: "Simonyan, K., Vedaldi, A., & Zisserman, A.",
+                  year: 2014,
+                  title: "Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps",
+                  href: "https://arxiv.org/abs/1312.6034",
+                },
+                {
+                  authors: "Ribeiro, M. T., Singh, S., & Guestrin, C.",
+                  year: 2016,
+                  title: "“Why Should I Trust You?”: Explaining the Predictions of Any Classifier",
+                  href: "https://arxiv.org/abs/1602.04938",
+                },
+                {
+                  authors: "Selvaraju, R. R., et al.",
+                  year: 2017,
+                  title: "Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization",
+                  href: "https://arxiv.org/abs/1610.02391",
+                },
+                {
+                  authors: "Wang, H., et al.",
+                  year: 2020,
+                  title: "Score-CAM: Score-Weighted Visual Explanations for Convolutional Neural Networks",
+                  href: "https://arxiv.org/abs/1910.01279",
+                },
+                {
+                  authors: "Abnar, S., & Zuidema, W.",
+                  year: 2020,
+                  title: "Quantifying Attention Flow in Transformers",
+                  href: "https://arxiv.org/abs/2005.00928",
+                },
+              ]}
+            />
           </main>
         )}
       </div>

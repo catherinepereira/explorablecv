@@ -1,4 +1,4 @@
-export const DEV_FRONTEND_PORT = 5444;
+export const DEV_FRONTEND_PORT = 5505;
 
 export const MODEL_KEYS = ["custom_cnn", "resnet18", "vit_s"] as const;
 export type ModelKey = (typeof MODEL_KEYS)[number];

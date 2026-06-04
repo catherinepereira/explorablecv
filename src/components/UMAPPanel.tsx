@@ -161,12 +161,8 @@ export function UMAPPanel({ classes, umap }: Props) {
         Each point is one validation image. The 2D position comes from running
         UMAP on the model's penultimate-layer features (the vector right before
         the classifier head). Images the model considers similar land near each
-        other, so tight class-colored clusters mean the model has learned a
-        feature space that separates the classes well; overlapping or smeared
-        clusters mean it's still confusing them. Compare across models: the
-        custom CNN's clusters bleed together, ResNet-18 separates most classes,
-        and ViT-S produces the tightest clumps. UMAP is non-linear, so distances
-        inside a cluster aren't meaningful; only the overall topology is.
+        other, so tight and disparate class-colored clusters mean the model has learned a
+        feature space that separates the classes well.
       </p>
     </div>
   );

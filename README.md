@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Dev server runs on `http://localhost:5444`.
+Dev server runs on `http://localhost:5505`.
 
 ## Data setup
 
@@ -34,3 +34,7 @@ Generate them from the training repo:
 cd ../cv-interpretability-model
 python scripts/bundle_for_frontend.py --frontend ../cv-interpretability/public
 ```
+
+## Credits
+
+The favicon is the "microscope" emoji from [Twemoji](https://github.com/twitter/twemoji) by Twitter, Inc. and other contributors, licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
