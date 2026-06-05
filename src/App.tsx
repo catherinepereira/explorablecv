@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, memo } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo, memo } from "react";
 import BpeWorker from "./bpe.worker.ts?worker";
 import type { BPEResult, BPEStep, Token } from "./bpe.types";
 import { BYTE_TO_UNICODE } from "./bpe";
@@ -251,6 +251,99 @@ function TokenInfoPanel({
           <span className="block text-xs text-gray-500 dark:text-zinc-500">
             {count === 1 ? "occurrence" : "occurrences"}
           </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VocabularyList({
+  bpeResult,
+  currentStep,
+  viewMode,
+  selectedToken,
+  onSelectToken,
+}: {
+  bpeResult: BPEResult;
+  currentStep: number;
+  viewMode: ViewMode;
+  selectedToken: string | null;
+  onSelectToken: (token: string | null) => void;
+}) {
+  // Vocabulary at a step = the base single-byte tokens the text starts from,
+  // plus every merge token created up to and including the current step
+  const vocab = useMemo(() => {
+    const seen = new Set<Token>();
+    const base: Token[] = [];
+    for (const token of bpeResult.steps[0].tokens) {
+      if (!seen.has(token)) {
+        seen.add(token);
+        base.push(token);
+      }
+    }
+    base.sort();
+
+    const merges: Token[] = [];
+    for (let i = 1; i <= currentStep && i < bpeResult.steps.length; i++) {
+      const newToken = bpeResult.steps[i].newToken;
+      if (newToken !== null && !seen.has(newToken)) {
+        seen.add(newToken);
+        merges.push(newToken);
+      }
+    }
+
+    return { base, merges };
+  }, [bpeResult, currentStep]);
+
+  const total = vocab.base.length + vocab.merges.length;
+
+  function renderChip(token: Token, isMerge: boolean) {
+    const isWhitespace = RE_WHITESPACE.test(token);
+    const dimmed = selectedToken !== null && token !== selectedToken;
+    return (
+      <button
+        key={`${isMerge ? "m" : "b"}-${token}`}
+        onClick={() => onSelectToken(selectedToken === token ? null : token)}
+        className={`cursor-pointer rounded border px-1.5 py-0.5 font-mono text-xs break-all transition-opacity duration-150 ${
+          isWhitespace
+            ? "border-gray-200 bg-gray-100 text-gray-400 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-500"
+            : isMerge
+              ? "border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-900 dark:bg-blue-950/30 dark:text-blue-300"
+              : "border-gray-200 bg-gray-50 text-gray-700 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-300"
+        } ${dimmed ? "opacity-20" : ""}`}
+      >
+        {formatToken(token, viewMode)}
+      </button>
+    );
+  }
+
+  return (
+    <div className="relative min-w-0 rounded-lg border border-gray-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
+      <h2 className="mb-3 text-xs font-semibold tracking-wide text-gray-400 uppercase dark:text-zinc-500">
+        Vocabulary ({total})
+      </h2>
+      <div className="flex max-h-[400px] flex-col gap-3 overflow-y-auto">
+        <div>
+          <h3 className="mb-1.5 text-[0.65rem] tracking-wide text-gray-400 uppercase dark:text-zinc-500">
+            Base ({vocab.base.length})
+          </h3>
+          <div className="flex flex-wrap gap-1">
+            {vocab.base.map((token) => renderChip(token, false))}
+          </div>
+        </div>
+        <div>
+          <h3 className="mb-1.5 text-[0.65rem] tracking-wide text-gray-400 uppercase dark:text-zinc-500">
+            Merged ({vocab.merges.length})
+          </h3>
+          {vocab.merges.length > 0 ? (
+            <div className="flex flex-wrap gap-1">
+              {vocab.merges.map((token) => renderChip(token, true))}
+            </div>
+          ) : (
+            <p className="text-xs text-gray-300 dark:text-zinc-600">
+              Step forward to add merged tokens
+            </p>
+          )}
         </div>
       </div>
     </div>
@@ -518,6 +611,16 @@ export default function App() {
               )}
             </div>
           </div>
+
+          {bpeResult && bpeResult.steps.length > 0 && (
+            <VocabularyList
+              bpeResult={bpeResult}
+              currentStep={currentStep}
+              viewMode={viewMode}
+              selectedToken={selectedToken}
+              onSelectToken={setSelectedToken}
+            />
+          )}
 
           <References
             items={[
