@@ -1,5 +1,5 @@
 // End-of-page references block. Pass a list of {authors, year, title, href}.
-// Use inline links at the point of mention inside sections; this block is the
+// Use inline links at the point of mention inside sections. This block is the
 // catch-all at the bottom of the page
 
 export type Reference = {
