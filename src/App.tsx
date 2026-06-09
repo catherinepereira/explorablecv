@@ -89,7 +89,7 @@ export default function App() {
 
         <SeriesNav currentSlug="cnn-playground" />
 
-        <main className="mt-2 flex flex-col gap-10">
+        <main className="mt-12 flex flex-col gap-12">
           <div className="flex w-fit items-center rounded-lg bg-gray-100 p-0.5 text-sm dark:bg-zinc-800">
             {TABS.map((t) => (
               <button
