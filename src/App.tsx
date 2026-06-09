@@ -497,7 +497,7 @@ export default function App() {
 
         <SeriesNav currentSlug="bpe-playground" />
 
-        <main className="mt-2 flex flex-col gap-10">
+        <main className="mt-12 flex flex-col gap-12">
           <div className="flex flex-col gap-4">
             <textarea
               value={inputText}
