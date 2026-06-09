@@ -103,7 +103,7 @@ export function App() {
 
         <SeriesNav currentSlug="cnn-architecture-comparison" />
 
-        <main className="mt-2 flex flex-col gap-10">
+        <main className="mt-12 flex flex-col gap-12">
           <Section
             id="timeline"
             number="01"

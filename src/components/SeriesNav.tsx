@@ -33,6 +33,11 @@ const SERIES: SeriesItem[] = [
     title: "CV Interpretability",
     href: "https://cv-interpretability.vercel.app/",
   },
+  {
+    slug: "embeddings-playground",
+    title: "Embeddings Playground",
+    href: "https://embeddings-playground-cat.vercel.app/",
+  },
 ];
 
 type Props = {
