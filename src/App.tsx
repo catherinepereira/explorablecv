@@ -47,7 +47,7 @@ export function App() {
           repo="cnn-visualizer"
           modelRepo="cnn-from-scratch-model"
         />
-        <main className="mt-2 flex flex-col gap-10">
+        <main className="mt-12 flex flex-col gap-12">
           <p className="text-gray-600 dark:text-zinc-400">
             No exported activations found. From the sibling repo:
           </p>
@@ -85,7 +85,7 @@ python scripts/export_activations.py --ckpt checkpoints/run1/best.pt --out ../cn
 
       <SeriesNav currentSlug="cnn-visualizer" />
 
-      <main className="mt-2 flex flex-col gap-10">
+      <main className="mt-12 flex flex-col gap-12">
         {manifest.stats && (
           <Section id="performance" number="01" title="Model performance">
             <StatsPanel stats={manifest.stats} />
