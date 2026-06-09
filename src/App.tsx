@@ -68,7 +68,7 @@ function App() {
         {state.status === "loading" && <Loading message="Loading dataset..." />}
         {state.status === "error" && <ErrorState message={state.error} />}
         {state.status === "ready" && (
-          <main className="mt-2 flex flex-col gap-10">
+          <main className="mt-12 flex flex-col gap-12">
             <StatsBar stats={state.data.modelStats} />
             <InterpretabilityTabs
               classes={state.data.classes}
