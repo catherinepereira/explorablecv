@@ -3,7 +3,7 @@ import Plotly from "plotly.js-dist-min";
 
 import { MODEL_KEYS, MODEL_LABELS, type ModelKey } from "../config";
 import type { UmapData } from "../types";
-import { Section, Card } from "./Section";
+import { Section, Card } from "@explorables/ui/Section";
 
 const PALETTE_LIGHT = [
   "#2563eb",

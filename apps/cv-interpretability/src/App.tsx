@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
 import { InterpretabilityTabs } from "./components/InterpretabilityTabs";
-import { References } from "./components/References";
-import { SiteHeader } from "./components/SiteHeader";
-import { SeriesNav } from "./components/SeriesNav";
+import { References } from "@explorables/ui/References";
+import { SiteHeader } from "@explorables/ui/SiteHeader";
+import { SeriesNav } from "@explorables/ui/SeriesNav";
 import { StatsBar } from "./components/StatsBar";
 import { UMAPPanel } from "./components/UMAPPanel";
 import { useDataset } from "./hooks/useDataset";

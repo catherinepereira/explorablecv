@@ -1,6 +1,6 @@
 import { MODEL_KEYS, MODEL_LABELS, type ModelKey } from "../config";
 import type { ModelStat } from "../types";
-import { Section } from "./Section";
+import { Section } from "@explorables/ui/Section";
 
 const MODEL_PARAMS: Record<ModelKey, string> = {
   custom_cnn: "4.5M",

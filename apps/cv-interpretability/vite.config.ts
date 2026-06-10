@@ -1,13 +1,6 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
+import { defineAppConfig } from "@explorables/vite-config";
 
-import { DEV_FRONTEND_PORT } from "./src/config";
-
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  server: {
-    port: DEV_FRONTEND_PORT,
-    strictPort: true,
-  },
-});
+export default defineConfig(
+  defineAppConfig({ slug: "cv-interpretability", port: 5505 }),
+);

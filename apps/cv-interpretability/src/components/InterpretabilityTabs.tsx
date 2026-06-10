@@ -10,7 +10,7 @@ import {
 import { useExplorerStore } from "../stores/useExplorerStore";
 import type { CamEntry, LimeEntry, RolloutEntry, Sample } from "../types";
 import { HeatmapOverlay } from "./HeatmapOverlay";
-import { Section, Card } from "./Section";
+import { Section, Card } from "@explorables/ui/Section";
 
 type MethodDescription = {
   body: string;
