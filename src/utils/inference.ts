@@ -1,5 +1,5 @@
 import * as ort from "onnxruntime-web";
-import { CIFAR10_INPUT_SIZE } from "../config";
+import { CIFAR10_INPUT_SIZE, CIFAR10_NUM_CLASSES } from "../config";
 
 ort.env.wasm.numThreads = 1;
 ort.env.wasm.proxy = false;
@@ -56,7 +56,10 @@ async function runOnce(
   for (const name of session.outputNames) {
     const t = output[name];
     const data = t.data as Float32Array;
-    if (name === "logits" || (t.dims.length === 2 && t.dims[1] === 10)) {
+    if (
+      name === "logits" ||
+      (t.dims.length === 2 && t.dims[1] === CIFAR10_NUM_CLASSES)
+    ) {
       logits = data;
     } else {
       featureMaps[name] = data;

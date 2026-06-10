@@ -17,7 +17,6 @@ interface AppState {
   setImage: (url: string, tensor: Float32Array) => void;
   setArchState: (id: string, state: ArchState) => void;
   selectArch: (id: string | null) => void;
-  reset: () => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -30,11 +29,4 @@ export const useAppStore = create<AppState>((set) => ({
   setArchState: (id, state) =>
     set((s) => ({ archStates: { ...s.archStates, [id]: state } })),
   selectArch: (selectedArchId) => set({ selectedArchId }),
-  reset: () =>
-    set({
-      imageUrl: null,
-      imageTensor: null,
-      archStates: {},
-      selectedArchId: null,
-    }),
 }));

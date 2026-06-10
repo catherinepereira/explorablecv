@@ -105,7 +105,6 @@ export function App() {
 
         <main className="mt-12 flex flex-col gap-12">
           <Section
-            id="timeline"
             number="01"
             title="Timeline"
             blurb="Six landmark CNNs in the order they appeared. Select one to see what it changed."
@@ -115,7 +114,6 @@ export function App() {
           </Section>
 
           <Section
-            id="predictions"
             number="02"
             title="Run the networks"
             blurb="Upload an image or pick a sample. It is resized to 32×32 and run through all six networks. Models are smaller CIFAR-10 variants of each architecture."
