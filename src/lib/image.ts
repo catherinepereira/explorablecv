@@ -1,5 +1,10 @@
 import type { Matrix } from "./conv";
 
+// ITU-R BT.601 luma weights for R, G, B
+const LUMA_R = 0.299;
+const LUMA_G = 0.587;
+const LUMA_B = 0.114;
+
 export function imageToGrayscale(img: HTMLImageElement, size: number): Matrix {
   const canvas = document.createElement("canvas");
   canvas.width = size;
@@ -12,7 +17,8 @@ export function imageToGrayscale(img: HTMLImageElement, size: number): Matrix {
     const row: number[] = [];
     for (let x = 0; x < size; x++) {
       const i = (y * size + x) * 4;
-      const gray = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+      const gray =
+        LUMA_R * data[i] + LUMA_G * data[i + 1] + LUMA_B * data[i + 2];
       row.push(gray / 255);
     }
     out.push(row);

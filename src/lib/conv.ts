@@ -61,15 +61,6 @@ export function padInput(input: Matrix, pad: number): Matrix {
   return out;
 }
 
-export function outputSize(
-  inSize: number,
-  kSize: number,
-  stride: number,
-  pad: number,
-): number {
-  return Math.floor((inSize + 2 * pad - kSize) / stride) + 1;
-}
-
 export function convolve(
   input: Matrix,
   kernel: Matrix,

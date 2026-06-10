@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { SingleConvMode } from "./modes/SingleConvMode";
-import { PlaygroundMode } from "./modes/PlaygroundMode";
-import { MultiLayerMode } from "./modes/MultiLayerMode";
+import { SingleConvMode } from "./sections/SingleConvMode";
+import { PlaygroundMode } from "./sections/PlaygroundMode";
+import { MultiLayerMode } from "./sections/MultiLayerMode";
 import { SiteHeader } from "./components/SiteHeader";
 import { SeriesNav } from "./components/SeriesNav";
 import { Section } from "./components/Section";
@@ -107,7 +107,6 @@ export default function App() {
           </div>
 
           <Section
-            id={active.id}
             number={active.number}
             title={active.title}
             blurb={active.blurb}
