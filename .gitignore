@@ -4,3 +4,18 @@ dist
 *.tsbuildinfo
 .DS_Store
 .vercel
+
+# Apps are tracked by allowlist. Everything under apps/ is ignored by default,
+# so an unpublished demo can live here and build without being committed. To
+# start tracking a demo, add an `!apps/<name>` line below. The directory must
+# be un-ignored before its contents, so keep the `apps/*` line above the
+# exceptions.
+apps/*
+!apps/hub
+!apps/bpe-playground
+!apps/cnn-playground
+!apps/cnn-visualizer
+!apps/cnn-architecture-comparison
+!apps/cv-interpretability
+!apps/embeddings-playground
+!apps/transformer-playground

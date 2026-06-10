@@ -54,6 +54,92 @@ importers:
         specifier: 'catalog:'
         version: 0.8.0(prettier@3.8.3)
 
+  apps/_template:
+    dependencies:
+      '@explorables/theme':
+        specifier: workspace:*
+        version: link:../../packages/theme
+      '@explorables/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      react:
+        specifier: 'catalog:'
+        version: 19.2.7
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.7(react@19.2.7)
+    devDependencies:
+      '@explorables/vite-config':
+        specifier: workspace:*
+        version: link:../../packages/vite-config
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.3.0(vite@8.0.16(@types/node@24.13.1)(jiti@2.7.0))
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.13.1
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.2.3(@types/react@19.2.17)
+      '@vitejs/plugin-react':
+        specifier: 'catalog:'
+        version: 6.0.2(vite@8.0.16(@types/node@24.13.1)(jiti@2.7.0))
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.3.0
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vite:
+        specifier: 'catalog:'
+        version: 8.0.16(@types/node@24.13.1)(jiti@2.7.0)
+
+  apps/backbone-benchmark:
+    dependencies:
+      '@explorables/theme':
+        specifier: workspace:*
+        version: link:../../packages/theme
+      '@explorables/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      react:
+        specifier: 'catalog:'
+        version: 19.2.7
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.7(react@19.2.7)
+    devDependencies:
+      '@explorables/vite-config':
+        specifier: workspace:*
+        version: link:../../packages/vite-config
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.3.0(vite@8.0.16(@types/node@24.13.1)(jiti@2.7.0))
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.13.1
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.2.3(@types/react@19.2.17)
+      '@vitejs/plugin-react':
+        specifier: 'catalog:'
+        version: 6.0.2(vite@8.0.16(@types/node@24.13.1)(jiti@2.7.0))
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.3.0
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vite:
+        specifier: 'catalog:'
+        version: 8.0.16(@types/node@24.13.1)(jiti@2.7.0)
+
   apps/bpe-playground:
     dependencies:
       '@explorables/theme':
@@ -232,6 +318,49 @@ importers:
         specifier: 'catalog:'
         version: 8.0.16(@types/node@24.13.1)(jiti@2.7.0)
 
+  apps/cv-detection-playground:
+    dependencies:
+      '@explorables/theme':
+        specifier: workspace:*
+        version: link:../../packages/theme
+      '@explorables/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      react:
+        specifier: 'catalog:'
+        version: 19.2.7
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.7(react@19.2.7)
+    devDependencies:
+      '@explorables/vite-config':
+        specifier: workspace:*
+        version: link:../../packages/vite-config
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.3.0(vite@8.0.16(@types/node@24.13.1)(jiti@2.7.0))
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.13.1
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.2.3(@types/react@19.2.17)
+      '@vitejs/plugin-react':
+        specifier: 'catalog:'
+        version: 6.0.2(vite@8.0.16(@types/node@24.13.1)(jiti@2.7.0))
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.3.0
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vite:
+        specifier: 'catalog:'
+        version: 8.0.16(@types/node@24.13.1)(jiti@2.7.0)
+
   apps/cv-interpretability:
     dependencies:
       '@explorables/theme':
@@ -265,6 +394,49 @@ importers:
       '@types/plotly.js-dist-min':
         specifier: ^2.3.4
         version: 2.3.4
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.2.3(@types/react@19.2.17)
+      '@vitejs/plugin-react':
+        specifier: 'catalog:'
+        version: 6.0.2(vite@8.0.16(@types/node@24.13.1)(jiti@2.7.0))
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.3.0
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vite:
+        specifier: 'catalog:'
+        version: 8.0.16(@types/node@24.13.1)(jiti@2.7.0)
+
+  apps/cv-segmentation-playground:
+    dependencies:
+      '@explorables/theme':
+        specifier: workspace:*
+        version: link:../../packages/theme
+      '@explorables/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      react:
+        specifier: 'catalog:'
+        version: 19.2.7
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.7(react@19.2.7)
+    devDependencies:
+      '@explorables/vite-config':
+        specifier: workspace:*
+        version: link:../../packages/vite-config
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.3.0(vite@8.0.16(@types/node@24.13.1)(jiti@2.7.0))
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.13.1
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.17
@@ -402,6 +574,49 @@ importers:
       onnxruntime-web:
         specifier: 1.26.0-dev.20260416-b7804b056c
         version: 1.26.0-dev.20260416-b7804b056c
+      react:
+        specifier: 'catalog:'
+        version: 19.2.7
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.7(react@19.2.7)
+    devDependencies:
+      '@explorables/vite-config':
+        specifier: workspace:*
+        version: link:../../packages/vite-config
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.3.0(vite@8.0.16(@types/node@24.13.1)(jiti@2.7.0))
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.13.1
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.2.3(@types/react@19.2.17)
+      '@vitejs/plugin-react':
+        specifier: 'catalog:'
+        version: 6.0.2(vite@8.0.16(@types/node@24.13.1)(jiti@2.7.0))
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.3.0
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vite:
+        specifier: 'catalog:'
+        version: 8.0.16(@types/node@24.13.1)(jiti@2.7.0)
+
+  apps/vit-playground:
+    dependencies:
+      '@explorables/theme':
+        specifier: workspace:*
+        version: link:../../packages/theme
+      '@explorables/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       react:
         specifier: 'catalog:'
         version: 19.2.7
