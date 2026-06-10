@@ -1,0 +1,17 @@
+<!-- Canonical no-flash dark-mode bootstrap. Paste this into each app's
+     index.html in <head>, before any stylesheet, so dark-mode users don't
+     flash white on load. The ThemeToggle in @explorables/ui reads the `dark`
+     class this sets. Keep apps in sync with this copy. -->
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      if (stored === "dark" || (!stored && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      }
+    } catch (e) {}
+  })();
+</script>

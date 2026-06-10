@@ -1,0 +1,44 @@
+/* Shared base theme for every Explorables demo: dark variant, fonts, resets.
+   The app's index.css imports tailwindcss itself (so Tailwind's content
+   detection roots in the app's src), then imports this, then adds its own
+   demo-specific CSS. Import order in an app's index.css:
+
+     @import "tailwindcss";
+     @import "@explorables/theme/theme.css";
+     ...app-specific rules... */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  font-family:
+    "Geist",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.font-mono,
+code,
+pre {
+  font-family: "Geist Mono", ui-monospace, Consolas, monospace;
+}
+
+.font-display {
+  font-family: "Geist Mono", ui-monospace, Consolas, monospace;
+}

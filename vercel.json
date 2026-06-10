@@ -1,0 +1,33 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/bpe-playground/:path*",
+      "destination": "https://explorables-bpe-playground.vercel.app/bpe-playground/:path*"
+    },
+    {
+      "source": "/cnn-playground/:path*",
+      "destination": "https://explorables-cnn-playground.vercel.app/cnn-playground/:path*"
+    },
+    {
+      "source": "/cnn-visualizer/:path*",
+      "destination": "https://explorables-cnn-visualizer.vercel.app/cnn-visualizer/:path*"
+    },
+    {
+      "source": "/cnn-architecture-comparison/:path*",
+      "destination": "https://explorables-cnn-architecture-comparison.vercel.app/cnn-architecture-comparison/:path*"
+    },
+    {
+      "source": "/cv-interpretability/:path*",
+      "destination": "https://explorables-cv-interpretability.vercel.app/cv-interpretability/:path*"
+    },
+    {
+      "source": "/embeddings-playground/:path*",
+      "destination": "https://explorables-embeddings-playground.vercel.app/embeddings-playground/:path*"
+    },
+    {
+      "source": "/transformer-playground/:path*",
+      "destination": "https://explorables-transformer-playground.vercel.app/transformer-playground/:path*"
+    }
+  ]
+}

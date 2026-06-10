@@ -1,0 +1,33 @@
+{
+  "name": "@explorables/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./Section": "./src/Section.tsx",
+    "./References": "./src/References.tsx",
+    "./ThemeToggle": "./src/ThemeToggle.tsx",
+    "./SiteHeader": "./src/SiteHeader.tsx",
+    "./CreditLine": "./src/CreditLine.tsx",
+    "./SeriesNav": "./src/SeriesNav.tsx",
+    "./StepControls": "./src/StepControls.tsx",
+    "./UploadButton": "./src/UploadButton.tsx"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@explorables/catalog": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "typescript": "catalog:"
+  }
+}
