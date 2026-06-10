@@ -20,7 +20,6 @@ export function FeedForwardSection() {
 
   return (
     <Section
-      id="feedforward"
       number="06"
       title="Feed-forward block"
       blurb="After attention mixes tokens together, a per-token MLP expands each vector to a wider space, applies a nonlinearity, and projects back. This is where most of the model's parameters live."

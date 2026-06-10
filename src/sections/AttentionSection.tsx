@@ -22,7 +22,6 @@ export function AttentionSection() {
 
   return (
     <Section
-      id="attention"
       number="04"
       title="Attention"
       blurb="Pick a layer and head and read BERT-tiny's own attention weights for the sentence above. Each query token distributes its attention across the keys."

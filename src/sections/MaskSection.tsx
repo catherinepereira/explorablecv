@@ -4,6 +4,9 @@ import { SelectButton } from "../components/SelectButton";
 import { MASK_TOKEN, predictMasks, type MaskPrediction } from "../lib/model";
 import { useTransformer } from "../lib/TransformerContext";
 
+// Wait for typing to settle before running the masked forward pass
+const PREDICT_DEBOUNCE_MS = 250;
+
 // Split into words while keeping each word's trailing punctuation attached, so
 // rebuilding the sentence keeps the original spacing and commas
 function splitWords(text: string): string[] {
@@ -81,7 +84,7 @@ export function MaskSection() {
         .then((p) => !cancelled && setPreds(p))
         .catch((e) => console.error(e))
         .finally(() => !cancelled && setRunning(false));
-    }, 250);
+    }, PREDICT_DEBOUNCE_MS);
     return () => {
       cancelled = true;
       clearTimeout(id);
@@ -100,7 +103,6 @@ export function MaskSection() {
 
   return (
     <Section
-      id="mask"
       number="07"
       title="Masked predictions"
       blurb="BERT was pretrained to predict masked words. Hide a word from your sentence and the forward pass will rank what should fill the gap."

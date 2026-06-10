@@ -41,7 +41,6 @@ export function ScoresSection() {
 
   return (
     <Section
-      id="scores"
       number="03"
       title="Scaled dot-product attention"
       blurb="Score every query against every key with a dot product, scale, softmax into weights, then take a weighted sum of values."

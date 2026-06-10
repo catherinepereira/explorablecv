@@ -1,7 +1,7 @@
 // The no-flash bootstrap in index.html sets the `dark` class on <html> before
 // React mounts, so the useState initializer can read it synchronously.
 // That avoids both the white flash and the React lint rule against setting
-// state from inside an effect
+// state from inside an effect.
 
 import { useEffect, useState } from "react";
 

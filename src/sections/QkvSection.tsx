@@ -25,7 +25,6 @@ export function QkvSection() {
 
   return (
     <Section
-      id="qkv"
       number="02"
       title="Query, Key, Value (QKV)"
       blurb="Each token's embedding is projected into three roles: a query, a key, and a value."

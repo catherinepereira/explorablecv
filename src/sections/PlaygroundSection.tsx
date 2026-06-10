@@ -13,7 +13,6 @@ export function PlaygroundSection() {
 
   return (
     <Section
-      id="tokenize"
       number="01"
       title="Tokenize"
       blurb="Type a sentence and watch BERT split it into WordPiece tokens."

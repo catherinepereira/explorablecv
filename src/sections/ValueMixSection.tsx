@@ -48,7 +48,6 @@ export function ValueMixSection() {
 
   return (
     <Section
-      id="valuemix"
       number="05"
       title="Aggregate values"
       blurb="Attention weights decide how much, the value vectors decide what. Their weighted sum is the context vector that leaves the attention block."

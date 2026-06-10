@@ -28,7 +28,6 @@ export function DecoderSection() {
 
   return (
     <Section
-      id="decoder"
       number="08"
       title="Encoder to decoder"
       blurb="An encoder like BERT reads an entire sentence at once to understand it. A decoder like GPT reads left to right and predicts the next word, generating text one token at a time. Both are built from the same transformer blocks."
