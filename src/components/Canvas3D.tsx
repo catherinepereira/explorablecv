@@ -5,7 +5,7 @@ import { Html } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import * as THREE from "three";
 import type { VizData, VizPoint } from "@/lib/types";
-import { useIsDark } from "@/lib/useTheme";
+import { useIsDark } from "@/hooks/useIsDark";
 
 function normalize(points: VizPoint[]) {
   const xs = points.map((p) => p.x);

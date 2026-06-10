@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import type { VizData, VizPoint } from "@/lib/types";
-import { useIsDark } from "@/lib/useTheme";
+import { useIsDark } from "@/hooks/useIsDark";
 
 const W = 900;
 const H = 650;

@@ -4,7 +4,6 @@ import { CompareTwoTracks } from "@/components/CompareTwoTracks";
 export function WhatIsAnEmbedding() {
   return (
     <Section
-      id="what-is-an-embedding"
       number="02"
       title="What is an embedding?"
       blurb="An embedding turns an item (a word, an image, a song) into a vector, such that similar items are positioned near each other."

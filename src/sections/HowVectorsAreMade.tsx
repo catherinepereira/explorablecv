@@ -4,7 +4,6 @@ import { GenreAverage } from "@/components/GenreAverage";
 export function HowVectorsAreMade() {
   return (
     <Section
-      id="how-vectors-are-made"
       number="03"
       title="From audio to a vector"
       blurb="The embeddings here come from CLAP, a model trained to give matching audio and text similar vectors."

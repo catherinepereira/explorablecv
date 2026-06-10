@@ -4,7 +4,6 @@ import { ProjectedCoords } from "@/components/ProjectedCoords";
 export function SeeingHighDimensions() {
   return (
     <Section
-      id="seeing-high-dimensions"
       number="04"
       title="Dimensionality reduction"
       blurb="You can't easily visualize a 512-dimensional point, so we use UMAP to reduce each one to 2D or 3D."

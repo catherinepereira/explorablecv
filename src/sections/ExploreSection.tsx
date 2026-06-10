@@ -30,7 +30,6 @@ export function ExploreSection() {
 
   return (
     <Section
-      id="explore"
       number="01"
       title="Explore the embedding space"
       blurb="Every dot is one track, positioned by its CLAP embedding and colored by genre. Click a dot to play it, or pick a genre to highlight its tracks."
