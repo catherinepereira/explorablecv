@@ -87,13 +87,12 @@ python scripts/export_activations.py --ckpt checkpoints/run1/best.pt --out ../cn
 
       <main className="mt-12 flex flex-col gap-12">
         {manifest.stats && (
-          <Section id="performance" number="01" title="Model performance">
+          <Section number="01" title="Model performance">
             <StatsPanel stats={manifest.stats} />
           </Section>
         )}
 
         <Section
-          id="sample"
           number={manifest.stats ? "02" : "01"}
           title="Sample image"
         >
@@ -106,7 +105,6 @@ python scripts/export_activations.py --ckpt checkpoints/run1/best.pt --out ../cn
         </Section>
 
         <Section
-          id="activations"
           number={manifest.stats ? "03" : "02"}
           title="Layer activations"
         >
