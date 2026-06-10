@@ -14,7 +14,6 @@ export function StatsBar({ stats }: Props) {
   const byModel = new Map(stats.map((s) => [s.model, s]));
   return (
     <Section
-      id="models"
       number="01"
       title="Models"
       blurb="Three ImageNette classifiers of increasing capacity. Validation accuracy and parameter count set the context for the interpretability methods below."

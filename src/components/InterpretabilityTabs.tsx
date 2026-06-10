@@ -155,7 +155,6 @@ export function InterpretabilityTabs({
 
   return (
     <Section
-      id="per-image"
       number="02"
       title="Per-image interpretability"
       blurb="Pick an image and a method to see where each model looks when it makes its prediction. A green border means the model classified the image correctly, red means it missed."

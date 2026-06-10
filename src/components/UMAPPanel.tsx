@@ -133,7 +133,6 @@ export function UMAPPanel({ classes, umap }: Props) {
 
   return (
     <Section
-      id="umap"
       number="03"
       title="Penultimate-layer UMAP"
       blurb="Each point is one validation image. The 2D position comes from running

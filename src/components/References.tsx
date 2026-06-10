@@ -15,11 +15,7 @@ type Props = {
 
 export function References({ items }: Props) {
   return (
-    <section
-      id="references"
-      aria-label="References"
-      className="mt-2 scroll-mt-20"
-    >
+    <section aria-label="References" className="mt-2">
       <div className="mb-3 text-xs tracking-wider text-gray-500 uppercase dark:text-zinc-500">
         References
       </div>
