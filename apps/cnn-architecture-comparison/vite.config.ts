@@ -1,16 +1,10 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
+import { defineAppConfig } from "@explorables/vite-config";
 
-const DEV_FRONTEND_PORT = 5504;
-
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  server: {
-    port: DEV_FRONTEND_PORT,
-    strictPort: true,
-  },
-  optimizeDeps: {
-    exclude: ["onnxruntime-web"],
-  },
-});
+export default defineConfig(
+  defineAppConfig({
+    slug: "cnn-architecture-comparison",
+    port: 5504,
+    optimizeDepsExclude: ["onnxruntime-web"],
+  }),
+);

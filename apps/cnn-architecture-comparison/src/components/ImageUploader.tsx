@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { imageToTensor } from "../utils/preprocess";
 import { useAppStore } from "../stores/appStore";
-import { UploadButton } from "./UploadButton";
+import { UploadButton } from "@explorables/ui/UploadButton";
 
 const SAMPLE_IMAGES = [
   { label: "Cat", url: "/samples/cat.png" },
