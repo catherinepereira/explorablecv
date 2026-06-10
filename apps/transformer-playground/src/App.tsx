@@ -1,6 +1,6 @@
-import { References } from "./components/References";
-import { SeriesNav } from "./components/SeriesNav";
-import { SiteHeader } from "./components/SiteHeader";
+import { References } from "@explorables/ui/References";
+import { SeriesNav } from "@explorables/ui/SeriesNav";
+import { SiteHeader } from "@explorables/ui/SiteHeader";
 import { TransformerProvider } from "./lib/TransformerContext";
 import { AttentionSection } from "./sections/AttentionSection";
 import { DecoderSection } from "./sections/DecoderSection";

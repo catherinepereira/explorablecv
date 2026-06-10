@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, Label, Prose, Section, Term } from "../components/Section";
+import { Card, Label, Prose, Section, Term } from "@explorables/ui/Section";
 import { AttentionMatrix } from "../components/AttentionMatrix";
 import { AttentionFlow } from "../components/AttentionFlow";
 import { SelectButton } from "../components/SelectButton";

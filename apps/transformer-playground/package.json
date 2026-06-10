@@ -1,37 +1,32 @@
 {
   "name": "transformer-playground",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "lint": "eslint ."
   },
   "dependencies": {
+    "@explorables/theme": "workspace:*",
+    "@explorables/ui": "workspace:*",
     "@huggingface/transformers": "^4.2.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "onnxruntime-web": "1.26.0-dev.20260416-b7804b056c",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@tailwindcss/vite": "^4.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^10.3.0",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
-    "globals": "^17.6.0",
-    "prettier": "3.8.3",
-    "prettier-plugin-tailwindcss": "0.8.0",
-    "tailwindcss": "^4.0.0",
-    "typescript": "~5.6.2",
-    "typescript-eslint": "^8.59.2",
-    "vite": "^6.0.0"
+    "@explorables/vite-config": "workspace:*",
+    "@tailwindcss/vite": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
   }
 }

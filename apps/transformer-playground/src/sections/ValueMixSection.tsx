@@ -1,4 +1,4 @@
-import { Card, Label, Prose, Section, Term } from "../components/Section";
+import { Card, Label, Prose, Section, Term } from "@explorables/ui/Section";
 import { SelectButton } from "../components/SelectButton";
 import { HEAD_DIM } from "../lib/model";
 import { useTransformer } from "../lib/TransformerContext";
