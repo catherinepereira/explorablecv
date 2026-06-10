@@ -1,13 +1,6 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
+import { defineAppConfig } from "@explorables/vite-config";
 
-const DEV_FRONTEND_PORT = 5503;
-
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  server: {
-    port: DEV_FRONTEND_PORT,
-    strictPort: true,
-  },
-});
+export default defineConfig(
+  defineAppConfig({ slug: "cnn-visualizer", port: 5503 }),
+);

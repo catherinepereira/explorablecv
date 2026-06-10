@@ -4,10 +4,10 @@ import { SampleStrip } from "./components/SampleStrip";
 import { LayerStack } from "./components/LayerStack";
 import { Predictions } from "./components/Predictions";
 import { StatsPanel } from "./components/StatsPanel";
-import { SiteHeader } from "./components/SiteHeader";
-import { SeriesNav } from "./components/SeriesNav";
-import { Section, Label } from "./components/Section";
-import { References } from "./components/References";
+import { SiteHeader } from "@explorables/ui/SiteHeader";
+import { SeriesNav } from "@explorables/ui/SeriesNav";
+import { Section, Label } from "@explorables/ui/Section";
+import { References } from "@explorables/ui/References";
 
 const MANIFEST_URL = `${import.meta.env.BASE_URL}activations/manifest.json`;
 const ASSET_BASE = `${import.meta.env.BASE_URL}activations/`;
