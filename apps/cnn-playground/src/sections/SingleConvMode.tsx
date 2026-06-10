@@ -5,7 +5,7 @@ import { MatrixCanvas } from "../components/MatrixCanvas";
 import { KernelEditor } from "../components/KernelEditor";
 import { ImagePicker } from "../components/ImagePicker";
 import { ColorLegend } from "../components/ColorLegend";
-import { StepControls } from "../components/StepControls";
+import { StepControls } from "@explorables/ui/StepControls";
 
 const IMG_SIZE = 64;
 const CELL = 8;

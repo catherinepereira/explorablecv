@@ -2,10 +2,10 @@ import { useState } from "react";
 import { SingleConvMode } from "./sections/SingleConvMode";
 import { PlaygroundMode } from "./sections/PlaygroundMode";
 import { MultiLayerMode } from "./sections/MultiLayerMode";
-import { SiteHeader } from "./components/SiteHeader";
-import { SeriesNav } from "./components/SeriesNav";
-import { Section } from "./components/Section";
-import { References } from "./components/References";
+import { SiteHeader } from "@explorables/ui/SiteHeader";
+import { SeriesNav } from "@explorables/ui/SeriesNav";
+import { Section } from "@explorables/ui/Section";
+import { References } from "@explorables/ui/References";
 
 type Tab = "single" | "playground" | "multi";
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import type { Matrix } from "../lib/conv";
 import { generatedPattern, imageToGrayscale, loadImage } from "../lib/image";
-import { UploadButton } from "./UploadButton";
+import { UploadButton } from "@explorables/ui/UploadButton";
 
 interface Props {
   size: number;
