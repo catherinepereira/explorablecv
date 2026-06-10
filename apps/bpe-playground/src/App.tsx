@@ -2,10 +2,10 @@ import { useState, useEffect, useRef, useCallback, useMemo, memo } from "react";
 import BpeWorker from "./bpe.worker.ts?worker";
 import type { BPEResult, BPEStep, Token } from "./bpe.types";
 import { BYTE_TO_UNICODE } from "./bpe";
-import { SiteHeader } from "./components/SiteHeader";
-import { SeriesNav } from "./components/SeriesNav";
-import { StepControls } from "./components/StepControls";
-import { References } from "./components/References";
+import { SiteHeader } from "@explorables/ui/SiteHeader";
+import { SeriesNav } from "@explorables/ui/SeriesNav";
+import { StepControls } from "@explorables/ui/StepControls";
+import { References } from "@explorables/ui/References";
 
 type ViewMode = "text" | "utf8";
 
