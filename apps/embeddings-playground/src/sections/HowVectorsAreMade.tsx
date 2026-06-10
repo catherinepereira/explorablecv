@@ -1,4 +1,4 @@
-import { Card, Label, Prose, Section } from "@/components/Section";
+import { Card, Label, Prose, Section } from "@explorables/ui/Section";
 import { GenreAverage } from "@/components/GenreAverage";
 
 export function HowVectorsAreMade() {

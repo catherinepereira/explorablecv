@@ -1,6 +1,6 @@
-import { SiteHeader } from "@/components/SiteHeader";
-import { SeriesNav } from "@/components/SeriesNav";
-import { References } from "@/components/References";
+import { SiteHeader } from "@explorables/ui/SiteHeader";
+import { SeriesNav } from "@explorables/ui/SeriesNav";
+import { References } from "@explorables/ui/References";
 import { WhatIsAnEmbedding } from "@/sections/WhatIsAnEmbedding";
 import { HowVectorsAreMade } from "@/sections/HowVectorsAreMade";
 import { SeeingHighDimensions } from "@/sections/SeeingHighDimensions";

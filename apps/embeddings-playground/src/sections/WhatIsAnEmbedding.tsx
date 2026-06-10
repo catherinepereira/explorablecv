@@ -1,4 +1,4 @@
-import { Card, Label, Prose, Section, Term } from "@/components/Section";
+import { Card, Label, Prose, Section, Term } from "@explorables/ui/Section";
 import { CompareTwoTracks } from "@/components/CompareTwoTracks";
 
 export function WhatIsAnEmbedding() {

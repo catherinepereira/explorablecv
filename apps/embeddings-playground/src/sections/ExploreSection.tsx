@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import type { VizPoint } from "@/lib/types";
-import { Section } from "@/components/Section";
+import { Section } from "@explorables/ui/Section";
 import PlayerBar from "@/components/PlayerBar";
 import Canvas2D from "@/components/Canvas2D";
 import Canvas3D from "@/components/Canvas3D";
