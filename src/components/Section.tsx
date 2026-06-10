@@ -1,20 +1,19 @@
 // Section + four standard content primitives:
-//   - <Section id number title blurb> wraps one numbered section
+//   - <Section number title blurb> wraps one numbered section
 //   - <Card>, <Label>, <Prose>, <Term> are the panel pieces
 
 import type { ReactNode } from "react";
 
 type Props = {
-  id: string;
   number: string;
   title: string;
   blurb?: string;
   children: ReactNode;
 };
 
-export function Section({ id, number, title, blurb, children }: Props) {
+export function Section({ number, title, blurb, children }: Props) {
   return (
-    <section id={id} className="scroll-mt-20">
+    <section className="scroll-mt-20">
       <div className="mb-2 flex flex-wrap items-baseline gap-3">
         <span className="font-mono text-xs text-gray-400 dark:text-zinc-500">
           {number}
