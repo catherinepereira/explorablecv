@@ -41,30 +41,6 @@ export const DEMOS: Demo[] = [
     emoji: "🔬",
     blurb: "See where image classifiers look when they decide.",
   },
-  {
-    slug: "vit-playground",
-    title: "ViT Playground",
-    emoji: "👀",
-    blurb: "Patchify an image and watch a Vision Transformer attend.",
-  },
-  {
-    slug: "backbone-benchmark",
-    title: "Backbone Benchmark",
-    emoji: "🦴",
-    blurb: "Compare image-classification backbones on accuracy vs latency.",
-  },
-  {
-    slug: "cv-segmentation-playground",
-    title: "Segmentation",
-    emoji: "🍎",
-    blurb: "Grow regions by hand, then run a real segmentation model.",
-  },
-  {
-    slug: "cv-detection-playground",
-    title: "Object Detection",
-    emoji: "🔍",
-    blurb: "Run a real detector, then unpack IoU, NMS, and precision/recall.",
-  },
 ];
 
 export function pathFor(slug: string): string {

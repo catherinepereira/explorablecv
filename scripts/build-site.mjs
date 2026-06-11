@@ -20,10 +20,6 @@ const DEMOS = [
   "cnn-visualizer",
   "cnn-architecture-comparison",
   "cv-interpretability",
-  "vit-playground",
-  "backbone-benchmark",
-  "cv-detection-playground",
-  "cv-segmentation-playground",
 ];
 
 rmSync(OUT, { recursive: true, force: true });
