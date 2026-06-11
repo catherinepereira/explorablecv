@@ -8,7 +8,7 @@ export default function App() {
       <div className="mx-auto max-w-5xl px-6 py-16">
         <header className="mb-3 flex flex-wrap items-baseline justify-between gap-4">
           <h1 className="font-display text-4xl font-bold tracking-tight">
-            Explorables
+            <span aria-hidden="true">🧭</span> CV Explorables
           </h1>
           <div className="flex items-center gap-3 text-xs text-gray-400 dark:text-zinc-500">
             <ThemeToggle />
