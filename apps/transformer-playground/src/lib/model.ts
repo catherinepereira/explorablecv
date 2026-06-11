@@ -33,7 +33,7 @@ export const MAX_TOKENS = 20;
 // Serve the model from /public/models and never hit the network
 env.allowRemoteModels = false;
 env.allowLocalModels = true;
-env.localModelPath = "/models/";
+env.localModelPath = `${import.meta.env.BASE_URL}models/`;
 
 const MODEL_ONNX_URL = `/models/${MODEL_ID}/onnx/model.onnx`;
 

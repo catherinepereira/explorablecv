@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { VizData } from "@/lib/types";
 
-const VIZ_URL = "/viz.json";
+const VIZ_URL = `${import.meta.env.BASE_URL}viz.json`;
 
 // viz.json is ~10 MB, so cache the fetch at module scope: every component that
 // calls useVizData shares one download. onProgress reports percent during the

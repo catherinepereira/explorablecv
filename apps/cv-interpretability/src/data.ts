@@ -8,6 +8,8 @@ import type {
   UmapData,
 } from "./types";
 
+const DATA_BASE = `${import.meta.env.BASE_URL}data/`;
+
 async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(path);
   if (!res.ok) throw new Error(`failed to load ${path}: ${res.status}`);
@@ -24,17 +26,18 @@ async function fetchJsonOptional<T>(path: string, fallback: T): Promise<T> {
   }
 }
 
-export const loadClasses = () => fetchJson<string[]>("/data/classes.json");
-export const loadSamples = () => fetchJson<Sample[]>("/data/samples.json");
-export const loadModelStats = () => fetchJson<ModelStat[]>("/data/models.json");
+export const loadClasses = () => fetchJson<string[]>(`${DATA_BASE}classes.json`);
+export const loadSamples = () => fetchJson<Sample[]>(`${DATA_BASE}samples.json`);
+export const loadModelStats = () =>
+  fetchJson<ModelStat[]>(`${DATA_BASE}models.json`);
 export const loadCams = () =>
-  fetchJson<Record<ModelKey, CamEntry[]>>("/data/cams.json");
+  fetchJson<Record<ModelKey, CamEntry[]>>(`${DATA_BASE}cams.json`);
 export const loadLime = () =>
-  fetchJson<Record<ModelKey, LimeEntry[]>>("/data/lime.json");
+  fetchJson<Record<ModelKey, LimeEntry[]>>(`${DATA_BASE}lime.json`);
 export const loadRollout = () =>
   fetchJsonOptional<Partial<Record<ModelKey, RolloutEntry[]>>>(
-    "/data/rollout.json",
+    `${DATA_BASE}rollout.json`,
     {},
   );
 export const loadUmap = () =>
-  fetchJson<Record<ModelKey, UmapData>>("/data/umap.json");
+  fetchJson<Record<ModelKey, UmapData>>(`${DATA_BASE}umap.json`);

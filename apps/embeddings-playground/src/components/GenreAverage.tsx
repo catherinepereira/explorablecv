@@ -22,7 +22,7 @@ export function GenreAverage() {
   const [genre, setGenre] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/genre_vectors.json")
+    fetch(`${import.meta.env.BASE_URL}genre_vectors.json`)
       .then((r) => (r.ok ? r.json() : null))
       .then(setData)
       .catch(() => setData(null));

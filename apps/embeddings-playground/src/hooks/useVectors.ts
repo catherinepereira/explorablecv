@@ -12,8 +12,8 @@ type VectorStore = {
   dim: number;
 };
 
-const META_URL = "/vectors.meta.json";
-const BIN_URL = "/vectors.bin";
+const META_URL = `${import.meta.env.BASE_URL}vectors.meta.json`;
+const BIN_URL = `${import.meta.env.BASE_URL}vectors.bin`;
 
 // IEEE 754 half-precision -> float32. Browsers have no portable typed-array
 // reader for float16, so decode the 16-bit pattern by hand.
