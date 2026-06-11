@@ -35,7 +35,7 @@ env.allowRemoteModels = false;
 env.allowLocalModels = true;
 env.localModelPath = `${import.meta.env.BASE_URL}models/`;
 
-const MODEL_ONNX_URL = `/models/${MODEL_ID}/onnx/model.onnx`;
+const MODEL_ONNX_URL = `${import.meta.env.BASE_URL}models/${MODEL_ID}/onnx/model.onnx`;
 
 type Mat = number[][];
 

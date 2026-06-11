@@ -13,7 +13,7 @@ export function useRunAll() {
 
     for (const arch of ARCHITECTURES) {
       setArchState(arch.id, { status: "loading" });
-      runInference(arch.onnxFile, tensor)
+      runInference(`${import.meta.env.BASE_URL}${arch.onnxFile}`, tensor)
         .then((result) => {
           if (!cancelled) setArchState(arch.id, { status: "ready", result });
         })

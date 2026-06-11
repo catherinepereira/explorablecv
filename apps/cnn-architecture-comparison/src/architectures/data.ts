@@ -62,7 +62,7 @@ export const ARCHITECTURES: Architecture[] = [
       { id: "f2", kind: "fc", label: "FC 84" },
       { id: "f3", kind: "fc", label: "FC 10" },
     ],
-    onnxFile: "/models/lenet.onnx",
+    onnxFile: "models/lenet.onnx",
   },
   {
     id: "alexnet",
@@ -95,7 +95,7 @@ export const ARCHITECTURES: Architecture[] = [
       { id: "f2", kind: "fc", label: "FC 4096 + Dropout" },
       { id: "f3", kind: "fc", label: "FC 10" },
     ],
-    onnxFile: "/models/alexnet.onnx",
+    onnxFile: "models/alexnet.onnx",
   },
   {
     id: "vgg",
@@ -128,7 +128,7 @@ export const ARCHITECTURES: Architecture[] = [
       { id: "p5", kind: "pool", label: "AvgPool" },
       { id: "f1", kind: "fc", label: "FC 10" },
     ],
-    onnxFile: "/models/vgg.onnx",
+    onnxFile: "models/vgg.onnx",
   },
   {
     id: "inception",
@@ -163,7 +163,7 @@ export const ARCHITECTURES: Architecture[] = [
       { id: "gap", kind: "pool", label: "GlobalAvgPool" },
       { id: "f1", kind: "fc", label: "FC 10" },
     ],
-    onnxFile: "/models/inception.onnx",
+    onnxFile: "models/inception.onnx",
   },
   {
     id: "resnet",
@@ -197,7 +197,7 @@ export const ARCHITECTURES: Architecture[] = [
       { id: "gap", kind: "pool", label: "GlobalAvgPool" },
       { id: "f1", kind: "fc", label: "FC 10" },
     ],
-    onnxFile: "/models/resnet.onnx",
+    onnxFile: "models/resnet.onnx",
   },
   {
     id: "densenet",
@@ -232,6 +232,6 @@ export const ARCHITECTURES: Architecture[] = [
       { id: "gap", kind: "pool", label: "GlobalAvgPool" },
       { id: "f1", kind: "fc", label: "FC 10" },
     ],
-    onnxFile: "/models/densenet.onnx",
+    onnxFile: "models/densenet.onnx",
   },
 ];
