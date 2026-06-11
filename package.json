@@ -13,6 +13,7 @@
     "format:check": "prettier --check ."
   },
   "devDependencies": {
+    "playwright": "1.60.0",
     "prettier": "catalog:",
     "prettier-plugin-tailwindcss": "catalog:"
   }

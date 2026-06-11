@@ -2,70 +2,68 @@
 // and the generated sitemap all read this. Adding a demo means adding one entry
 // here, not editing every app
 
-// The GitHub list that SeriesNav links to as the series root
-export const SERIES_URL =
-  "https://github.com/stars/catherinepereira/lists/explorables";
+// The monorepo all the demos live in
+export const SERIES_URL = "https://github.com/catherinepereira/explorables";
 
 export type Demo = {
   // Folder name under apps/, and the URL path segment: /<slug>
   slug: string;
   // Short title for nav and cards
   title: string;
+  // Shown before the title on the home cards
+  emoji: string;
   // One-line description for cards and meta tags
   blurb: string;
-  // The current standalone deployment, kept for redirects from the old origin
-  // to the new /<slug> path during cutover
-  legacyUrl: string;
 };
 
 export const DEMOS: Demo[] = [
   {
     slug: "cnn-playground",
     title: "CNN Playground",
+    emoji: "🖍️",
     blurb: "Interactive convolutional neural network playground.",
-    legacyUrl: "https://cnn-playground.vercel.app/",
   },
   {
     slug: "cnn-visualizer",
     title: "CNN Visualizer",
+    emoji: "🖼️",
     blurb: "A per-CNN-layer view of CIFAR-10.",
-    legacyUrl: "https://cnn-visualizer-cat.vercel.app/",
   },
   {
     slug: "cnn-architecture-comparison",
     title: "CNN Architectures",
+    emoji: "🕰️",
     blurb: "Compare convolutional architectures side by side.",
-    legacyUrl: "https://cnn-architecture-comparison.vercel.app/",
   },
   {
     slug: "cv-interpretability",
     title: "CV Interpretability",
+    emoji: "🔬",
     blurb: "See where image classifiers look when they decide.",
-    legacyUrl: "https://cv-interpretability.vercel.app/",
   },
   {
     slug: "vit-playground",
     title: "ViT Playground",
+    emoji: "👀",
     blurb: "Patchify an image and watch a Vision Transformer attend.",
-    legacyUrl: "https://vit-playground.vercel.app/",
   },
   {
     slug: "backbone-benchmark",
     title: "Backbone Benchmark",
+    emoji: "🦴",
     blurb: "Compare image-classification backbones on accuracy vs latency.",
-    legacyUrl: "https://backbone-benchmark.vercel.app/",
   },
   {
     slug: "cv-segmentation-playground",
     title: "Segmentation",
+    emoji: "🍎",
     blurb: "Grow regions by hand, then run a real segmentation model.",
-    legacyUrl: "https://cv-segmentation-playground.vercel.app/",
   },
   {
     slug: "cv-detection-playground",
     title: "Object Detection",
+    emoji: "🔍",
     blurb: "Run a real detector, then unpack IoU, NMS, and precision/recall.",
-    legacyUrl: "https://cv-detection-playground.vercel.app/",
   },
 ];
 
@@ -91,10 +89,5 @@ export function validateCatalog(demos: Demo[] = DEMOS): void {
       throw new Error(`Duplicate demo slug: ${demo.slug}`);
     }
     seen.add(demo.slug);
-    if (!demo.legacyUrl.startsWith("https://")) {
-      throw new Error(
-        `legacyUrl for ${demo.slug} must be https://, got ${demo.legacyUrl}`,
-      );
-    }
   }
 }
