@@ -12,7 +12,7 @@ export default function App() {
           </h1>
           <div className="flex items-center gap-3 text-xs text-gray-400 dark:text-zinc-500">
             <ThemeToggle />
-            <CreditLine repo="explorables" />
+            <CreditLine repo="explorablecv" />
           </div>
         </header>
         <p className="mb-12 max-w-2xl text-sm text-gray-600 dark:text-zinc-400">

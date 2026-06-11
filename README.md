@@ -44,8 +44,8 @@ one demo never downloads another demo's code.
 ## Setup
 
 ```bash
-git clone https://github.com/catherinepereira/explorables.git
-cd explorables
+git clone https://github.com/catherinepereira/explorablecv.git
+cd explorablecv
 corepack enable
 pnpm install
 ```
