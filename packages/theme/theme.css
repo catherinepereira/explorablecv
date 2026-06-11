@@ -7,6 +7,11 @@
      @import "@explorables/theme/theme.css";
      ...app-specific rules... */
 
+/* Tailwind scans the importing app's own src, but the shared components are in
+   @explorables/ui. Without this, classes used only there (text-3xl, the header
+   and nav spacing) never get generated. Path is relative to this file */
+@source "../ui/src";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
