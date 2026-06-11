@@ -1,7 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "mkdir -p public",
-  "outputDirectory": "public",
   "rewrites": [
     {
       "source": "/bpe-playground/:path*",
@@ -30,10 +28,6 @@
     {
       "source": "/transformer-playground/:path*",
       "destination": "https://explorables-transformer-playground.vercel.app/:path*"
-    },
-    {
-      "source": "/:path*",
-      "destination": "https://explorables-hub.vercel.app/:path*"
     }
   ]
 }
