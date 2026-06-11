@@ -28,6 +28,10 @@
     {
       "source": "/transformer-playground/:path*",
       "destination": "https://explorables-transformer-playground.vercel.app/transformer-playground/:path*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://explorables-hub.vercel.app/:path*"
     }
   ]
 }

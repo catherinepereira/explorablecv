@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import type { UserConfig } from "vite";
 
 type AppConfigOptions = {
-  // Folder name and URL path prefix: the app is served under /<slug>/
+  // Folder name, used for the dev URL and to keep ports/labels consistent
   slug: string;
   // Dev server port, unique per app so several can run at once
   port: number;
@@ -14,13 +14,15 @@ type AppConfigOptions = {
 };
 
 export function defineAppConfig({
-  slug,
   port,
   optimizeDepsExclude,
   alias,
 }: AppConfigOptions): UserConfig {
   return {
-    base: `/${slug}/`,
+    // Relative asset paths so the build works served at root (the app's own
+    // Vercel URL) or under the proxy's /<slug>/ prefix. These demos have no
+    // client-side router, so relative base has no routing downside
+    base: "./",
     plugins: [react(), tailwindcss()],
     server: {
       port,
