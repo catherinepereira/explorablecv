@@ -7,7 +7,7 @@ test("the shipped catalog is valid", () => {
 });
 
 test("pathFor builds a root-relative path", () => {
-  assert.equal(pathFor("bpe-playground"), "/bpe-playground");
+  assert.equal(pathFor("cnn-playground"), "/cnn-playground");
 });
 
 test("validateCatalog rejects a slug that escapes the path", () => {

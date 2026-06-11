@@ -1,20 +1,17 @@
 # Explorables
 
-Interactive, in-browser explainers for machine learning ideas. Each demo is a
+Interactive, in-browser explainers for computer vision ideas. Each demo is a
 standalone React app that runs entirely client-side, served together under one
 domain with a shared landing page.
 
 ## The demos
 
-| Demo                                                            | What it covers                                           | Dev port |
-| --------------------------------------------------------------- | -------------------------------------------------------- | -------- |
-| [bpe-playground](apps/bpe-playground)                           | Byte Pair Encoding, step by step                         | 5501     |
-| [cnn-playground](apps/cnn-playground)                           | Convolution, kernels, and pooling                        | 5502     |
-| [cnn-visualizer](apps/cnn-visualizer)                           | Per-layer activations on CIFAR-10                        | 5503     |
-| [cnn-architecture-comparison](apps/cnn-architecture-comparison) | LeNet through VGG, run in the browser via ONNX           | 5504     |
-| [cv-interpretability](apps/cv-interpretability)                 | Where image classifiers look when they decide            | 5505     |
-| [embeddings-playground](apps/embeddings-playground)             | From one audio clip to 25,000 tracks you can explore     | 5511     |
-| [transformer-playground](apps/transformer-playground)           | BERT-tiny attention, value mixing, and masked prediction | 5506     |
+| Demo                                                            | What it covers                                 | Dev port |
+| --------------------------------------------------------------- | ---------------------------------------------- | -------- |
+| [cnn-playground](apps/cnn-playground)                           | Convolution, kernels, and pooling              | 5502     |
+| [cnn-visualizer](apps/cnn-visualizer)                           | Per-layer activations on CIFAR-10              | 5503     |
+| [cnn-architecture-comparison](apps/cnn-architecture-comparison) | LeNet through VGG, run in the browser via ONNX | 5504     |
+| [cv-interpretability](apps/cv-interpretability)                 | Where image classifiers look when they decide  | 5505     |
 
 The [hub](apps/hub) is the landing page that links to all of them, on port 5500.
 

@@ -12,10 +12,8 @@ dist
 # exceptions.
 apps/*
 !apps/hub
-!apps/bpe-playground
 !apps/cnn-playground
 !apps/cnn-visualizer
 !apps/cnn-architecture-comparison
 !apps/cv-interpretability
-!apps/embeddings-playground
-!apps/transformer-playground
+dist-site

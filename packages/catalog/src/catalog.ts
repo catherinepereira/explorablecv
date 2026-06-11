@@ -20,12 +20,6 @@ export type Demo = {
 
 export const DEMOS: Demo[] = [
   {
-    slug: "bpe-playground",
-    title: "BPE Playground",
-    blurb: "Interactive Byte Pair Encoding playground.",
-    legacyUrl: "https://bpe-playground.vercel.app/",
-  },
-  {
     slug: "cnn-playground",
     title: "CNN Playground",
     blurb: "Interactive convolutional neural network playground.",
@@ -48,19 +42,6 @@ export const DEMOS: Demo[] = [
     title: "CV Interpretability",
     blurb: "See where image classifiers look when they decide.",
     legacyUrl: "https://cv-interpretability.vercel.app/",
-  },
-  {
-    slug: "embeddings-playground",
-    title: "Embeddings Playground",
-    blurb:
-      "What an embedding is, from one audio clip to 25,000 tracks you can explore and play.",
-    legacyUrl: "https://embeddings-playground-cat.vercel.app/",
-  },
-  {
-    slug: "transformer-playground",
-    title: "Transformer Playground",
-    blurb: "An interactive walkthrough of transformer architecture.",
-    legacyUrl: "https://transformer-playground.vercel.app/",
   },
 ];
 

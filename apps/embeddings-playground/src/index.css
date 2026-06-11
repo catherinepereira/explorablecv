@@ -1,6 +1,0 @@
-@import "tailwindcss";
-@import "@explorables/theme/theme.css";
-
-input[type="number"] {
-  font-family: "Geist Mono", ui-monospace, Consolas, monospace;
-}

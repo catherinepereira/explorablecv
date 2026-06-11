@@ -12,7 +12,7 @@ export default function App() {
           <ThemeToggle />
         </header>
         <p className="mb-12 max-w-2xl text-sm text-gray-600 dark:text-zinc-400">
-          Interactive explainers for machine learning ideas. Each one runs in
+          Interactive explainers for computer vision ideas. Each one runs in
           your browser. Open the{" "}
           <a
             href={SERIES_URL}
