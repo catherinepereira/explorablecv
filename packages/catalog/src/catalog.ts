@@ -3,7 +3,7 @@
 // here, not editing every app
 
 // The monorepo all the demos live in
-export const SERIES_URL = "https://github.com/catherinepereira/explorables";
+export const SERIES_URL = "https://github.com/catherinepereira/explorablecv";
 
 export type Demo = {
   // Folder name under apps/, and the URL path segment: /<slug>
