@@ -17,3 +17,5 @@ apps/*
 !apps/cnn-architecture-comparison
 !apps/cv-interpretability
 dist-site
+
+.vercel
