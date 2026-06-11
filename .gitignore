@@ -11,11 +11,15 @@ dist
 # be un-ignored before its contents, so keep the `apps/*` line above the
 # exceptions.
 apps/*
-!apps/hub
+!apps/home
 !apps/cnn-playground
 !apps/cnn-visualizer
 !apps/cnn-architecture-comparison
 !apps/cv-interpretability
+# !apps/vit-playground
+# !apps/backbone-benchmark
+# !apps/cv-detection-playground
+# !apps/cv-segmentation-playground
 dist-site
 
 .vercel

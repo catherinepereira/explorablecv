@@ -6,14 +6,18 @@ domain with a shared landing page.
 
 ## The demos
 
-| Demo                                                            | What it covers                                 | Dev port |
-| --------------------------------------------------------------- | ---------------------------------------------- | -------- |
-| [cnn-playground](apps/cnn-playground)                           | Convolution, kernels, and pooling              | 5502     |
-| [cnn-visualizer](apps/cnn-visualizer)                           | Per-layer activations on CIFAR-10              | 5503     |
-| [cnn-architecture-comparison](apps/cnn-architecture-comparison) | LeNet through VGG, run in the browser via ONNX | 5504     |
-| [cv-interpretability](apps/cv-interpretability)                 | Where image classifiers look when they decide  | 5505     |
+| Demo                                                            | What it covers                                         | Dev port |
+| --------------------------------------------------------------- | ------------------------------------------------------ | -------- |
+| [cnn-playground](apps/cnn-playground)                           | Convolution, kernels, and pooling                      | 5501     |
+| [cnn-visualizer](apps/cnn-visualizer)                           | Per-layer activations on CIFAR-10                      | 5502     |
+| [cnn-architecture-comparison](apps/cnn-architecture-comparison) | LeNet through VGG, run in the browser via ONNX         | 5503     |
+| [cv-interpretability](apps/cv-interpretability)                 | Where image classifiers look when they decide          | 5504     |
+| [vit-playground](apps/vit-playground)                           | Patchify, embeddings, and attention with a real ViT    | 5505     |
+| [backbone-benchmark](apps/backbone-benchmark)                   | Accuracy vs latency across backbones, with constraints | 5506     |
+| [cv-detection-playground](apps/cv-detection-playground)         | Object detection, IoU, NMS, precision and recall       | 5507     |
+| [cv-segmentation-playground](apps/cv-segmentation-playground)   | Thresholding, region growing, and trained segmentation | 5508     |
 
-The [hub](apps/hub) is the landing page that links to all of them, on port 5500.
+The [home](apps/home) page is the landing page that links to all of them, on port 5500.
 
 Each app runs on its own `5xxx` dev port (so several can run at once) and is
 served under `/<demo>/` in production. `pnpm --filter <demo> dev` starts one,
@@ -26,16 +30,16 @@ explorables/
   packages/
     ui/            shared components (header, nav, section primitives, theme toggle)
     theme/         shared base CSS and the no-flash dark-mode bootstrap
-    catalog/       the demo list, the single source of truth for nav + hub + sitemap
+    catalog/       the demo list, the single source of truth for nav + home + sitemap
     vite-config/   the defineAppConfig factory each app's vite.config uses
   apps/
-    hub/           landing page, served at /
+    home/          landing page, served at /
     <demo>/        each demo, served at /<demo>/
 ```
 
-Demos share their chrome through the `packages`, so a fix to the header or nav
-lands everywhere at once. Each app stays its own Vite build, so visiting one
-demo never downloads another demo's code.
+Demos share their header, nav, and section components through the `packages`, so
+a fix to one updates every demo. Each app stays its own Vite build, so visiting
+one demo never downloads another demo's code.
 
 ## Setup
 
@@ -60,7 +64,7 @@ pnpm dev
 Or run a single app:
 
 ```bash
-pnpm --filter bpe-playground dev
+pnpm --filter cnn-playground dev
 ```
 
 ## Building
@@ -73,10 +77,11 @@ pnpm --filter @explorables/catalog test
 
 ## How it works
 
-The whole site is served from one domain. The `hub` answers `/`, and each demo
-answers `/<demo>/`. In production a Vercel proxy project rewrites each path
-prefix to that app's own deployment (see `vercel.json`), so every demo keeps an
-independent build and the proxy stitches them together.
+The whole site is served from one domain. The `home` page is served at `/`, and
+each demo at `/<demo>/`. `pnpm build:site` runs every app's build and combines
+them into one `dist-site` tree (see `scripts/build-site.mjs`), which Vercel
+serves as static files. Each demo keeps an independent build, so its assets stay
+under its own path prefix.
 
 Shared state across demos (the light/dark theme) is a `dark` class set on
 `<html>` before React mounts, written by the no-flash bootstrap in each
@@ -85,7 +90,7 @@ tree across demos, so the theme persists through `localStorage` rather than
 context.
 
 Adding a demo means adding one entry to `packages/catalog` and one app under
-`apps/`. The nav, the hub grid, and the sitemap all read the catalog, so they
+`apps/`. The nav, the home grid, and the sitemap all read the catalog, so they
 stay in sync.
 
 ## License

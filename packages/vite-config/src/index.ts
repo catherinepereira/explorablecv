@@ -21,7 +21,7 @@ export function defineAppConfig({
 }: AppConfigOptions): UserConfig {
   return {
     // Absolute prefix so asset URLs are /<slug>/assets/... regardless of a
-    // trailing slash. The hub matches that prefix and rewrites to the app,
+    // trailing slash. The home page matches that prefix and rewrites to the app,
     // which serves its assets at its own root
     base: `/${slug}/`,
     plugins: [react(), tailwindcss()],

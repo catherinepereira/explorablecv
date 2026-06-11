@@ -12,6 +12,12 @@ type Props = {
 export function SiteHeader({ title, repo, modelRepo, children }: Props) {
   return (
     <>
+      <a
+        href="/"
+        className="mb-4 inline-flex items-center gap-1 text-xs text-gray-500 transition-colors hover:text-blue-600 dark:text-zinc-500 dark:hover:text-blue-400"
+      >
+        <span aria-hidden="true">←</span> Back to home
+      </a>
       <header className="mb-3 flex flex-wrap items-baseline justify-between gap-4">
         <h1 className="font-display text-3xl font-bold tracking-tight">
           {title}

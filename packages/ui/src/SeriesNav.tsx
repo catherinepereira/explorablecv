@@ -1,4 +1,4 @@
-import { DEMOS, SERIES_URL, pathFor } from "@explorables/catalog";
+import { DEMOS, pathFor } from "@explorables/catalog";
 
 type Props = {
   currentSlug: string;
@@ -8,9 +8,7 @@ export function SeriesNav({ currentSlug }: Props) {
   return (
     <nav className="mb-5 flex flex-wrap items-baseline gap-2 text-xs text-gray-500 dark:text-zinc-500">
       <a
-        href={SERIES_URL}
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/"
         className="tracking-wider text-gray-500 uppercase hover:text-blue-600 dark:text-zinc-500 dark:hover:text-blue-400"
       >
         Explorables Series

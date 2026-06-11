@@ -1,4 +1,4 @@
-// Single source of truth for the demo series. SeriesNav, the hub landing page,
+// Single source of truth for the demo series. SeriesNav, the home landing page,
 // and the generated sitemap all read this. Adding a demo means adding one entry
 // here, not editing every app
 
@@ -42,6 +42,30 @@ export const DEMOS: Demo[] = [
     title: "CV Interpretability",
     blurb: "See where image classifiers look when they decide.",
     legacyUrl: "https://cv-interpretability.vercel.app/",
+  },
+  {
+    slug: "vit-playground",
+    title: "ViT Playground",
+    blurb: "Patchify an image and watch a Vision Transformer attend.",
+    legacyUrl: "https://vit-playground.vercel.app/",
+  },
+  {
+    slug: "backbone-benchmark",
+    title: "Backbone Benchmark",
+    blurb: "Compare image-classification backbones on accuracy vs latency.",
+    legacyUrl: "https://backbone-benchmark.vercel.app/",
+  },
+  {
+    slug: "cv-segmentation-playground",
+    title: "Segmentation",
+    blurb: "Grow regions by hand, then run a real segmentation model.",
+    legacyUrl: "https://cv-segmentation-playground.vercel.app/",
+  },
+  {
+    slug: "cv-detection-playground",
+    title: "Object Detection",
+    blurb: "Run a real detector, then unpack IoU, NMS, and precision/recall.",
+    legacyUrl: "https://cv-detection-playground.vercel.app/",
   },
 ];
 
