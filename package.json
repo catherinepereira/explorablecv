@@ -12,6 +12,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
+  "dependencies": {
+    "@vercel/analytics": "2.0.1",
+    "@vercel/speed-insights": "2.0.0"
+  },
   "devDependencies": {
     "playwright": "1.60.0",
     "prettier": "catalog:",
